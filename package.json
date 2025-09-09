@@ -2,37 +2,15 @@
   "name": "mountain-hut-scraper",
   "version": "1.0.0",
   "description": "Mountain hut availability scraper with simplified database schema for booking.com-style frontend display",
-  "main": "src/index.js",
-  "bin": {
-    "hut-scraper": "src/index.js"
-  },
+  "main": "src/multiHutCli.js",
   "scripts": {
-    "start": "node src/index.js",
-    "scrape": "node src/index.js",
-    "scrape:double-room": "node src/index.js 'Dvoposteljna soba - zakonska postelja'",
-    "scrape:db": "node src/parallelDatabaseScraper.js",
-    "scrape:all": "node src/multiHutCli.js --full --concurrency 3",
-    "scrape:all:test": "node src/multiHutCli.js --test --concurrency 3",
+    "scrape:all": "node src/multiHutCli.js --full --concurrency 2",
+    "scrape:test": "node src/multiHutCli.js --test --concurrency 2",
     "scrape:list": "node src/multiHutCli.js --list-huts",
-    "db:setup": "echo 'Run: createdb mountain_huts && psql mountain_huts < simplified-availability-schema.sql'",
+    "db:studio": "prisma studio",
+    "db:generate": "prisma generate",
     "test": "echo \"No tests specified yet\" && exit 0",
-    "lint": "echo \"No linting configured yet\" && exit 0",
-    "service": "node src/service.js",
-    "service:dev": "NODE_ENV=development node src/service.js",
-    "service:prod": "NODE_ENV=production node src/service.js",
-    "pm2:start": "pm2 start ecosystem.config.js",
-    "pm2:stop": "pm2 stop mountain-hut-scraper",
-    "pm2:restart": "pm2 restart mountain-hut-scraper",
-    "pm2:reload": "pm2 reload mountain-hut-scraper",
-    "pm2:delete": "pm2 delete mountain-hut-scraper",
-    "pm2:logs": "pm2 logs mountain-hut-scraper",
-    "pm2:status": "pm2 list",
-    "pm2:monit": "pm2 monit",
-    "setup": "chmod +x scripts/*.sh && ./scripts/setup-service.sh",
-    "health": "curl -s http://localhost:3000/health | jq . || curl -s http://localhost:3000/health",
-    "status": "curl -s http://localhost:3000/status | jq . || curl -s http://localhost:3000/status",
-    "stats": "curl -s http://localhost:3000/stats | jq . || curl -s http://localhost:3000/stats",
-    "manual-scrape": "curl -s -X POST http://localhost:3000/scrape -H 'Content-Type: application/json' | jq . || curl -s -X POST http://localhost:3000/scrape -H 'Content-Type: application/json'"
+    "lint": "echo \"No linting configured yet\" && exit 0"
   },
   "keywords": [
     "scraper",
@@ -53,12 +31,12 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^17.2.2",
-    "node-cron": "^4.2.1",
     "pg": "^8.16.3",
-    "playwright": "^1.40.0",
-    "pm2": "^6.0.10",
-    "winston": "^3.17.0",
-    "winston-daily-rotate-file": "^5.0.0"
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.15.0",
+    "prisma": "^6.15.0"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -70,9 +48,5 @@
   "bugs": {
     "url": "https://github.com/matevzklancar/mountain-hut-scraper/issues"
   },
-  "homepage": "https://github.com/matevzklancar/mountain-hut-scraper#readme",
-  "devDependencies": {
-    "@prisma/client": "^6.15.0",
-    "prisma": "^6.15.0"
-  }
+  "homepage": "https://github.com/matevzklancar/mountain-hut-scraper#readme"
 }
