@@ -1,0 +1,482 @@
+{
+  "Aljažev dom v Vratih": {
+    "hutSlug": "Aljazev_dom_v_Vratih",
+    "bentralId": "5f7a59334e415f4d",
+    "roomTypes": [
+      {
+        "name": "Dvoposteljna soba",
+        "externalId": "5f5441304e775f4f"
+      },
+      {
+        "name": "Triposteljna soba",
+        "externalId": "5f5441304f415f4f"
+      },
+      {
+        "name": "Postelja v skupni sobi za 5 oseb",
+        "externalId": "5f5441314d415f4f"
+      },
+      {
+        "name": "Postelja v skupni sobi za 6 oseb",
+        "externalId": "5f5441314d515f4f"
+      },
+      {
+        "name": "Postelja v skupni sobi za 8 oseb",
+        "externalId": "5f5445344e675f4f"
+      }
+    ]
+  },
+  "Koča pod Bogatinom": {
+    "hutSlug": "Koca_pod_Bogatinom",
+    "bentralId": "5f444d314d515f4e",
+    "roomTypes": [
+      {
+        "name": "1-posteljna soba",
+        "externalId": "5f5441304e54514d"
+      },
+      {
+        "name": "2-posteljna soba",
+        "externalId": "5f5441304e54554d"
+      },
+      {
+        "name": "3-posteljna soba",
+        "externalId": "5f5441304e54594d"
+      },
+      {
+        "name": "Štiriposteljna soba",
+        "externalId": "5f5441304e54634d"
+      },
+      {
+        "name": "Petposteljna soba",
+        "externalId": "5f5441344d444d4d"
+      },
+      {
+        "name": "Šestposteljna soba",
+        "externalId": "5f5441304e54674d"
+      },
+      {
+        "name": "Šestposteljna soba",
+        "externalId": "5f5441304e546b4d"
+      },
+      {
+        "name": "Skupna ležišča za 7 oseb",
+        "externalId": "5f5441304e6a414d"
+      },
+      {
+        "name": "Skupna ležišča za 14 oseb",
+        "externalId": "5f5441304e6a454d"
+      }
+    ]
+  },
+  "Vodnikov dom": {
+    "hutSlug": "Vodnikov_dom",
+    "bentralId": "5f444d314e775f4e",
+    "roomTypes": [
+      {
+        "name": "Dvoposteljna soba",
+        "externalId": "5f5441304e44494d"
+      },
+      {
+        "name": "Ležišče v štiriposteljni sobi",
+        "externalId": "5f5441304e44514d"
+      },
+      {
+        "name": "Ležišče v 5-posteljni sobi",
+        "externalId": "5f5441304e44554d"
+      },
+      {
+        "name": "Ležišče v 5-posteljni sobi",
+        "externalId": "5f5441304e44594d"
+      },
+      {
+        "name": "Ležišče v 6-posteljni sobi",
+        "externalId": "5f5441304e44634d"
+      },
+      {
+        "name": "Ležišče v 6-posteljni sobi",
+        "externalId": "5f5441304e44674d"
+      },
+      {
+        "name": "Ležišče v 6-posteljni sobi",
+        "externalId": "5f5441304e446b4d"
+      },
+      {
+        "name": "Skupna ležišča za 8 oseb",
+        "externalId": "5f5441304e54414d"
+      },
+      {
+        "name": "Skupna ležišča za 8 oseb",
+        "externalId": "5f5441304e54454d"
+      },
+      {
+        "name": "Skupna ležišča za 10 oseb",
+        "externalId": "5f5441304e54494d"
+      },
+      {
+        "name": "Skupna ležišča za 16 oseb",
+        "externalId": "5f5441304e544d4d"
+      }
+    ]
+  },
+  "Planinska koča na Uskovnici": {
+    "hutSlug": "Planinska_koca_na_Uskovnici",
+    "bentralId": "5f6a6b344d775f4d",
+    "roomTypes": [
+      {
+        "name": "Dvoposteljna soba s pogradom - Soba 2",
+        "externalId": "5f7a4d774e675f4e"
+      },
+      {
+        "name": "Štiriposteljna soba - Soba 3",
+        "externalId": "5f7a4d774e775f4e"
+      },
+      {
+        "name": "Dvoposteljna soba - soba 4",
+        "externalId": "5f7a4d774f415f4e"
+      },
+      {
+        "name": "Dvoposteljna soba - Soba 5",
+        "externalId": "5f7a4d774f515f4e"
+      },
+      {
+        "name": "Triposteljna soba - Soba 6",
+        "externalId": "5f7a4d784d415f4e"
+      },
+      {
+        "name": "Šestposteljna soba - Soba 8",
+        "externalId": "5f7a4d784d515f4e"
+      },
+      {
+        "name": "Enoposteljna soba - Soba 9",
+        "externalId": "5f7a4d784d675f4e"
+      },
+      {
+        "name": "Skupna ležišča za 8 oseb - Soba 10",
+        "externalId": "5f7a4d784d775f4e"
+      },
+      {
+        "name": "Enoposteljna soba - Soba 1",
+        "externalId": "5f7a51344e675f4e"
+      },
+      {
+        "name": "Troposteljna soba - Soba 7",
+        "externalId": "5f7a51354e415f4e"
+      }
+    ]
+  },
+  "Dom Planika pod Triglavom": {
+    "hutSlug": "Dom_Planika_pod_Triglavom",
+    "bentralId": "5f444d304f515f4e",
+    "roomTypes": [
+      {
+        "name": "2-posteljna soba",
+        "externalId": "5f54417a4e7a554d"
+      },
+      {
+        "name": "5-posteljna soba",
+        "externalId": "5f5441304d444d4d"
+      },
+      {
+        "name": "6-posteljna soba",
+        "externalId": "5f5441304d44634d"
+      },
+      {
+        "name": "Skupna ležišča za 14 oseb",
+        "externalId": "5f5441354d54674d"
+      },
+      {
+        "name": "Skupna ležišča za 18 oseb",
+        "externalId": "5f54417a4f44494d"
+      },
+      {
+        "name": "Skupna ležišča za 22 oseb",
+        "externalId": "5f54417a4f444d4d"
+      },
+      {
+        "name": "Skupna ležišča za 26 oseb",
+        "externalId": "5f5441354d444d4d"
+      }
+    ]
+  },
+  "Koča na Doliču": {
+    "hutSlug": "Koca_na_Dolicu",
+    "bentralId": "5f7a63334f515f4d",
+    "roomTypes": [
+      {
+        "name": "Dvoposteljna soba",
+        "externalId": "5f544d784f415f4f"
+      },
+      {
+        "name": "Soba s 3 ležišči",
+        "externalId": "5f544d344d7a454d"
+      },
+      {
+        "name": "Soba s 3 ležišči",
+        "externalId": "5f544d784f515f4f"
+      },
+      {
+        "name": "Soba s 5 ležišči",
+        "externalId": "5f54417a4f54594d"
+      },
+      {
+        "name": "Soba s 6 ležišči",
+        "externalId": "5f54417a4f546b4d"
+      },
+      {
+        "name": "Skupna ležišča za 8 oseb",
+        "externalId": "5f5441304d44414d"
+      },
+      {
+        "name": "Skupna ležišča za 15 oseb",
+        "externalId": "5f544d794d775f4f"
+      },
+      {
+        "name": "Skupna ležišča za 6 oseb",
+        "externalId": "5f5455784e7a634d"
+      }
+    ]
+  },
+  "Koča na Golici": {
+    "hutSlug": "Koca_na_Golici",
+    "bentralId": "5f4455354d415f4e",
+    "roomTypes": [
+      {
+        "name": "4-posteljna soba",
+        "externalId": "5f5445784d6a594d"
+      },
+      {
+        "name": "Skupna soba za 4 osebe",
+        "externalId": "5f5445784d6a554d"
+      },
+      {
+        "name": "Skupna soba za 6 oseb",
+        "externalId": "5f5445784d6a514d"
+      },
+      {
+        "name": "Skupna soba za 8 oseb",
+        "externalId": "5f5445784d6a4d4d"
+      },
+      {
+        "name": "Skupna ležišča za 15 oseb",
+        "externalId": "5f5445784d6a494d"
+      },
+      {
+        "name": "2-posteljna soba",
+        "externalId": "5f5445784d6a634d"
+      }
+    ]
+  },
+  "Dom na Komni": {
+    "hutSlug": "Dom_na_Komni",
+    "bentralId": "5f444d324d775f4e",
+    "roomTypes": [
+      {
+        "name": "Dvoposteljna soba - pograd",
+        "externalId": "5f5441304e7a4d4d"
+      },
+      {
+        "name": "Dvoposteljna soba - zakonska postelja",
+        "externalId": "5f5441354d44454d"
+      },
+      {
+        "name": "Ležišče v 4-posteljni sobi",
+        "externalId": "5f5441304e7a514d"
+      },
+      {
+        "name": "Ležišče v 4-posteljni sobi",
+        "externalId": "5f5441304e7a554d"
+      },
+      {
+        "name": "Ležišče v 10-posteljni sobi",
+        "externalId": "5f5441304f44674d"
+      },
+      {
+        "name": "Dvoposteljna soba",
+        "externalId": "5f5441354d44494d"
+      },
+      {
+        "name": "Ležišče v depandansi - soba za 24 oseb",
+        "externalId": "5f5441304f446b4d"
+      }
+    ]
+  },
+  "Koča pri Triglavskih jezerih": {
+    "hutSlug": "Koca_pri_Triglavskih_jezerih",
+    "bentralId": "5f4451314e415f4e",
+    "roomTypes": [
+      {
+        "name": "2 posteljna soba",
+        "externalId": "5f5441334d7a4d4d"
+      },
+      {
+        "name": "3-posteljna soba",
+        "externalId": "5f5441334d7a554d"
+      },
+      {
+        "name": "4-posteljna soba",
+        "externalId": "5f5441334d7a594d"
+      },
+      {
+        "name": "Skupna ležišča za 6 oseb",
+        "externalId": "5f5441334d7a634d"
+      },
+      {
+        "name": "Skupna ležišča za 6 oseb",
+        "externalId": "5f5441354e7a414d"
+      },
+      {
+        "name": "Skupna ležišča za 8 oseb",
+        "externalId": "5f5441334e44634d"
+      },
+      {
+        "name": "Skupna ležišča za 10 oseb",
+        "externalId": "5f5441334e54414d"
+      },
+      {
+        "name": "Skupna ležišča za 12 oseb",
+        "externalId": "5f5441334e44594d"
+      },
+      {
+        "name": "Skupna ležišča za 12 oseb",
+        "externalId": "5f5441334e446b4d"
+      },
+      {
+        "name": "Skupna ležišča za 14 oseb",
+        "externalId": "5f5441334e54454d"
+      },
+      {
+        "name": "Skupna ležišča za 20 oseb",
+        "externalId": "5f5441334e44674d"
+      }
+    ]
+  },
+  "Prešernova koča na Stolu": {
+    "hutSlug": "Presernova_koca_na_Stolu",
+    "bentralId": "5f4451354d415f4e",
+    "roomTypes": [
+      {
+        "name": "Zasebna 4 posteljna soba (03)",
+        "externalId": "5f5441344e44634d"
+      },
+      {
+        "name": "Zasebna 4 posteljna soba (06)",
+        "externalId": "5f5441344e44674d"
+      },
+      {
+        "name": "6 posteljna soba (01)",
+        "externalId": "5f5441344e446b4d"
+      },
+      {
+        "name": "6 posteljna soba (05)",
+        "externalId": "5f5441344e54414d"
+      },
+      {
+        "name": "6 posteljna soba (07)",
+        "externalId": "5f5441344e54454d"
+      },
+      {
+        "name": "Soba za 10 oseb",
+        "externalId": "5f5441344e54494d"
+      }
+    ]
+  },
+  "Planinski dom Krnska jezera": {
+    "hutSlug": "Planinski_dom_Krnska_jezera",
+    "bentralId": "5f7a67334f515f4d",
+    "roomTypes": [
+      {
+        "name": "Dvoposteljna soba",
+        "externalId": "5f54557a4d675f4f"
+      },
+      {
+        "name": "Štiriposteljna soba",
+        "externalId": "5f54557a4e415f4f"
+      },
+      {
+        "name": "Postelja v sobi za 4 osebe",
+        "externalId": "5f54557a4f515f4f"
+      },
+      {
+        "name": "Postelja v sobi za 5 oseb",
+        "externalId": "5f54557a4e515f4f"
+      },
+      {
+        "name": "Postelja v skupnih ležiščih za 12 oseb",
+        "externalId": "5f54557a4e775f4f"
+      },
+      {
+        "name": "Postelja v skupnih ležiščih za 18 oseb",
+        "externalId": "5f54557a4f415f4f"
+      },
+      {
+        "name": "Postelja v skupnih ležiščih za 21 oseb",
+        "externalId": "5f54557a4e675f4f"
+      }
+    ]
+  },
+  "Triglavski dom na Kredarici": {
+    "hutSlug": "Triglavski_dom_na_Kredarici",
+    "bentralId": "5f4451784d415f4e",
+    "roomTypes": [
+      {
+        "name": "Dvoposteljna soba - zakonska postelja",
+        "externalId": "5f5441324e446b4d"
+      },
+      {
+        "name": "Enoposteljna soba",
+        "externalId": "5f5451794e7a4d4d"
+      },
+      {
+        "name": "Triposteljna soba",
+        "externalId": "5f5441324e54414d"
+      },
+      {
+        "name": "Štiriposteljna soba",
+        "externalId": "5f5441324e54454d"
+      },
+      {
+        "name": "Petposteljna soba",
+        "externalId": "5f5441354d54554d"
+      },
+      {
+        "name": "Šestposteljna soba",
+        "externalId": "5f5441324e54494d"
+      },
+      {
+        "name": "Skupna ležišča za 7 oseb",
+        "externalId": "5f5451794e7a594d"
+      },
+      {
+        "name": "Skupna ležišča za 7 oseb",
+        "externalId": "5f5441324e7a4d4d"
+      },
+      {
+        "name": "Skupna ležišča za 11 oseb",
+        "externalId": "5f5441324e7a634d"
+      },
+      {
+        "name": "Skupna ležišča za 12 oseb",
+        "externalId": "5f5441314e7a674d"
+      },
+      {
+        "name": "Skupna ležišča za 13 oseb",
+        "externalId": "5f5441324e7a514d"
+      },
+      {
+        "name": "Skupna ležišča za 14 oseb",
+        "externalId": "5f5441324e7a594d"
+      },
+      {
+        "name": "Skupna ležišča za 16 oseb",
+        "externalId": "5f5441324f44414d"
+      },
+      {
+        "name": "Skupna ležišča za 20 oseb",
+        "externalId": "5f5441324e7a674d"
+      },
+      {
+        "name": "Skupna ležišča za 30 oseb",
+        "externalId": "5f5441324f444d4d"
+      }
+    ]
+  }
+}

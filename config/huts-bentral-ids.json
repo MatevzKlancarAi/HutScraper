@@ -1,0 +1,94 @@
+{
+  "huts": [
+    {
+      "name": "Aljažev dom v Vratih",
+      "urlSlug": "Aljazev_dom_v_Vratih",
+      "bentralId": "5f7a59334e415f4d",
+      "key": "c36cb03d625406b10025b6d2cef5719e",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f7a59334e415f4d&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=c36cb03d625406b10025b6d2cef5719e"
+    },
+    {
+      "name": "Koča pod Bogatinom",
+      "urlSlug": "Koca_pod_Bogatinom",
+      "bentralId": "5f444d314d515f4e",
+      "key": "f3e0042902702ce56863166916bc99ab",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f444d314d515f4e&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=f3e0042902702ce56863166916bc99ab"
+    },
+    {
+      "name": "Vodnikov dom",
+      "urlSlug": "Vodnikov_dom",
+      "bentralId": "5f444d314e775f4e",
+      "key": "1526244f099efe65c34c6a0449929f49",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f444d314e775f4e&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=1526244f099efe65c34c6a0449929f49"
+    },
+    {
+      "name": "Planinska koča na Uskovnici",
+      "urlSlug": "Planinska_koca_na_Uskovnici",
+      "bentralId": "5f6a6b344d775f4d",
+      "key": "317151f4922fb7f5d8472d4f7c0b2bcc",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f6a6b344d775f4d&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=317151f4922fb7f5d8472d4f7c0b2bcc"
+    },
+    {
+      "name": "Dom Planika pod Triglavom",
+      "urlSlug": "Dom_Planika_pod_Triglavom",
+      "bentralId": "5f444d304f515f4e",
+      "key": "ba710ef596cc12b945d528906d01be64",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f444d304f515f4e&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=ba710ef596cc12b945d528906d01be64"
+    },
+    {
+      "name": "Koča na Doliču",
+      "urlSlug": "Koca_na_Dolicu",
+      "bentralId": "5f7a63334f515f4d",
+      "key": "38dcdcbf66476ada981ca349dc16bf49",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f7a63334f515f4d&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=38dcdcbf66476ada981ca349dc16bf49"
+    },
+    {
+      "name": "Koča na Golici",
+      "urlSlug": "Koca_na_Golici",
+      "bentralId": "5f4455354d415f4e",
+      "key": "402743dcfea828eba74cce069a6a533a",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f4455354d415f4e&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=402743dcfea828eba74cce069a6a533a"
+    },
+    {
+      "name": "Dom na Komni",
+      "urlSlug": "Dom_na_Komni",
+      "bentralId": "5f444d324d775f4e",
+      "key": "9c8183baf3a152cedaceb1fc89428315",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f444d324d775f4e&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=9c8183baf3a152cedaceb1fc89428315"
+    },
+    {
+      "name": "Koča pri Triglavskih jezerih",
+      "urlSlug": "Koca_pri_Triglavskih_jezerih",
+      "bentralId": "5f4451314e415f4e",
+      "key": "8828c1042ede12b7b2e5b82a4a563b80",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f4451314e415f4e&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=8828c1042ede12b7b2e5b82a4a563b80"
+    },
+    {
+      "name": "Prešernova koča na Stolu",
+      "urlSlug": "Presernova_koca_na_Stolu",
+      "bentralId": "5f4451354d415f4e",
+      "key": "5e0a7793825c4fa8db8bc8c8fe69ec42",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f4451354d415f4e&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=5e0a7793825c4fa8db8bc8c8fe69ec42"
+    },
+    {
+      "name": "Planinski dom Krnska jezera",
+      "urlSlug": "Planinski_dom_Krnska_jezera",
+      "bentralId": "5f7a67334f515f4d",
+      "key": "03e28328c67facc86b6ba3f55a83d20a",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f7a67334f515f4d&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=03e28328c67facc86b6ba3f55a83d20a"
+    },
+    {
+      "name": "Triglavski dom na Kredarici",
+      "urlSlug": "Triglavski_dom_na_Kredarici",
+      "bentralId": "5f4451784d415f4e",
+      "key": "21eb14db6ac1873bf9cbcf78feeddb56",
+      "bentralIframeUrl": "https://www.bentral.com/service/embed/booking.html?id=5f4451784d415f4e&title=0&width=full&header-bg=edeff4&header-color=363c49&header2-bg=edeff4&header2-color=363c49&table-bg=edeff4&table-color=363c49&btn-bg=12509b&border-width=0&poweredby=0&lang=sl&key=21eb14db6ac1873bf9cbcf78feeddb56"
+    }
+  ],
+  "notes": {
+    "source": "Scraped from https://reservations.microgramm.si/hud/",
+    "credentials": "Username: hud, Password: kozarja14hud",
+    "description": "All these mountain huts use the Bentral booking system. Each has a unique Bentral ID that can be used to construct the direct iframe URL, bypassing the need for authentication.",
+    "scraped_date": "2025-09-05"
+  }
+}

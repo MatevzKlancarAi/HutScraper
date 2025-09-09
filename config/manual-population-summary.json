@@ -1,0 +1,46 @@
+{
+  "huts": [],
+  "totalRoomTypes": 0,
+  "errors": [
+    {
+      "hutName": "Aljažev dom v Vratih",
+      "error": "permission denied for sequence room_types_id_seq"
+    },
+    {
+      "hutName": "Koča pod Bogatinom",
+      "error": "permission denied for sequence room_types_id_seq"
+    },
+    {
+      "hutName": "Vodnikov dom",
+      "error": "permission denied for sequence room_types_id_seq"
+    },
+    {
+      "hutName": "Planinska koča na Uskovnici",
+      "error": "permission denied for sequence room_types_id_seq"
+    },
+    {
+      "hutName": "Dom Planika pod Triglavom",
+      "error": "permission denied for sequence room_types_id_seq"
+    },
+    {
+      "hutName": "Koča na Doliču",
+      "error": "permission denied for sequence room_types_id_seq"
+    },
+    {
+      "hutName": "Koča na Golici",
+      "error": "permission denied for sequence room_types_id_seq"
+    },
+    {
+      "hutName": "Dom na Komni",
+      "error": "permission denied for sequence room_types_id_seq"
+    },
+    {
+      "hutName": "Koča pri Triglavskih jezerih",
+      "error": "permission denied for sequence room_types_id_seq"
+    },
+    {
+      "hutName": "Prešernova koča na Stolu",
+      "error": "permission denied for sequence room_types_id_seq"
+    }
+  ]
+}
