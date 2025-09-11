@@ -88,7 +88,7 @@ display_banner() {
     echo "
 🏔️  ========================================
    Mountain Hut Scraper Server
-   Version: $(node -p \"require('./package.json').version\")
+   Version: 1.0.0
    Environment: $NODE_ENV
    Port: $PORT
    ========================================"
