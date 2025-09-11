@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Create app user for security
-RUN groupadd -r appgroup && useradd -r -g appgroup -s /bin/bash appuser
+RUN groupadd -r appgroup && useradd -r -g appgroup -s /bin/bash -m appuser
 
 # Copy package files
 COPY package*.json ./
@@ -24,6 +24,7 @@ COPY . .
 
 # Create necessary directories and set permissions
 RUN mkdir -p logs screenshots results \
+    && touch logs/error.log logs/combined.log \
     && chown -R appuser:appgroup /app \
     && chmod +x src/server/index.js
 
