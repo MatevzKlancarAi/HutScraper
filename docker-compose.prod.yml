@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # Mountain Hut Scraper Application (Production)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mountain-huts-scraper-prod
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Database Configuration (External PostgreSQL)
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_MAX_CONNECTIONS: ${DATABASE_MAX_CONNECTIONS:-10}
+      DATABASE_URL: ${DATABASE_URL}
+      
+      # Server Configuration
+      NODE_ENV: production
+      PORT: 3000
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      API_KEY: ${API_KEY}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-*}
+      TZ: ${TZ:-Europe/Ljubljana}
+      
+      # Scheduled Scraping Configuration
+      ENABLE_SCHEDULED_SCRAPING: ${ENABLE_SCHEDULED_SCRAPING:-true}
+      SCRAPE_CRON_MORNING: ${SCRAPE_CRON_MORNING:-0 6 * * *}
+      SCRAPE_CRON_EVENING: ${SCRAPE_CRON_EVENING:-0 18 * * *}
+      MAX_SCRAPE_RETRIES: ${MAX_SCRAPE_RETRIES:-3}
+      SCRAPER_RETRY_DELAY: ${SCRAPER_RETRY_DELAY:-300000}
+      ENABLE_MAINTENANCE_JOB: ${ENABLE_MAINTENANCE_JOB:-false}
+      MAINTENANCE_CRON: ${MAINTENANCE_CRON:-0 2 * * 0}
+      
+      # Scraper Configuration
+      HEADLESS_MODE: true
+      SLOW_MO: 0
+      SCREENSHOT_ON_ERROR: true
+      SCRAPER_MAX_CONCURRENCY: ${SCRAPER_MAX_CONCURRENCY:-2}
+      SCRAPER_DELAY_HUTS: ${SCRAPER_DELAY_HUTS:-5000}
+      SCRAPER_DELAY_ROOMS: ${SCRAPER_DELAY_ROOMS:-2000}
+      
+      # Notification Configuration
+      ALERT_EMAIL: ${ALERT_EMAIL:-}
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
+      
+    volumes:
+      # Persist logs, screenshots, and results
+      - ./logs:/app/logs
+      - ./screenshots:/app/screenshots
+      - ./results:/app/results
+      # Mount configuration files
+      - ./config:/app/config:ro
+      
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Optional: Nginx reverse proxy for production
+  nginx:
+    image: nginx:alpine
+    container_name: mountain-huts-nginx-prod
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app
+    profiles:
+      - proxy
