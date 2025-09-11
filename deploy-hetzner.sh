@@ -25,16 +25,12 @@ mkdir -p ./logs ./screenshots ./results ./config
 echo "🔧 Setting directory permissions..."
 chown -R 1000:1000 ./logs ./screenshots ./results 2>/dev/null || true
 
-# Run the container
+# Run the container (without volume mounts to avoid permission issues)
 echo "🐳 Starting new container..."
 docker run -d \
   --name mountain-huts-scraper-prod \
   --restart unless-stopped \
   -p 3000:3000 \
-  -v "$(pwd)/logs:/app/logs" \
-  -v "$(pwd)/screenshots:/app/screenshots" \
-  -v "$(pwd)/results:/app/results" \
-  -v "$(pwd)/config:/app/config:ro" \
   --env-file .env.production \
   -e DATABASE_URL="postgresql://availability_activities:QDPCFvH4Jhr5QPozTy2f@159.69.183.35:5432/world_discovery?schema=availability" \
   hutscraper_app:latest
