@@ -21,6 +21,10 @@ docker rm mountain-huts-scraper-prod 2>/dev/null || true
 echo "📁 Creating host directories..."
 mkdir -p ./logs ./screenshots ./results ./config
 
+# Set proper permissions for mounted directories (appuser UID is 1000)
+echo "🔧 Setting directory permissions..."
+chown -R 1000:1000 ./logs ./screenshots ./results 2>/dev/null || true
+
 # Run the container
 echo "🐳 Starting new container..."
 docker run -d \
@@ -32,6 +36,7 @@ docker run -d \
   -v "$(pwd)/results:/app/results" \
   -v "$(pwd)/config:/app/config:ro" \
   --env-file .env.production \
+  -e DATABASE_URL="postgresql://availability_activities:QDPCFvH4Jhr5QPozTy2f@159.69.183.35:5432/world_discovery?schema=availability" \
   hutscraper_app:latest
 
 echo "✅ Container started successfully!"
