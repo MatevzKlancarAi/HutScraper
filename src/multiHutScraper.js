@@ -13,6 +13,7 @@ class MultiHutScraper {
             delayBetweenRooms: 2000, // Delay between room types (ms)
             testMode: true, // Only scrape September 2025 if true
             targetHuts: null, // Array of hut names to scrape (null = all)
+            manageDatabaseConnection: true, // Whether to close database after scraping (false in server mode)
             ...options
         };
         
@@ -330,7 +331,11 @@ class MultiHutScraper {
             this.results.endTime = new Date();
             throw error;
         } finally {
-            await database.close();
+            // Only close database connection if we're managing it (CLI mode)
+            // In server mode, the database connection should remain open
+            if (this.options.manageDatabaseConnection) {
+                await database.close();
+            }
         }
     }
     

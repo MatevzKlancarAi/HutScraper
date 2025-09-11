@@ -2,37 +2,40 @@
   "name": "mountain-hut-scraper",
   "version": "1.0.0",
   "description": "Mountain hut availability scraper with simplified database schema for booking.com-style frontend display",
-  "main": "src/index.js",
-  "bin": {
-    "hut-scraper": "src/index.js"
-  },
+  "main": "src/server/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "scrape": "node src/index.js",
-    "scrape:double-room": "node src/index.js 'Dvoposteljna soba - zakonska postelja'",
-    "scrape:db": "node src/parallelDatabaseScraper.js",
-    "scrape:all": "node src/multiHutCli.js --full --concurrency 3",
-    "scrape:all:test": "node src/multiHutCli.js --test --concurrency 3",
+    "start": "node src/server/index.js",
+    "start:dev": "NODE_ENV=development nodemon src/server/index.js",
+    "start:prod": "NODE_ENV=production node src/server/index.js",
+    "scrape:all": "node src/multiHutCli.js --full --concurrency 2",
+    "scrape:test": "node src/multiHutCli.js --test --concurrency 2",
     "scrape:list": "node src/multiHutCli.js --list-huts",
-    "db:setup": "echo 'Run: createdb mountain_huts && psql mountain_huts < simplified-availability-schema.sql'",
-    "test": "echo \"No tests specified yet\" && exit 0",
-    "lint": "echo \"No linting configured yet\" && exit 0",
-    "service": "node src/service.js",
-    "service:dev": "NODE_ENV=development node src/service.js",
-    "service:prod": "NODE_ENV=production node src/service.js",
-    "pm2:start": "pm2 start ecosystem.config.js",
-    "pm2:stop": "pm2 stop mountain-hut-scraper",
-    "pm2:restart": "pm2 restart mountain-hut-scraper",
-    "pm2:reload": "pm2 reload mountain-hut-scraper",
-    "pm2:delete": "pm2 delete mountain-hut-scraper",
+    "docker:build": "docker build -t mountain-hut-scraper .",
+    "docker:run": "docker run -p 3000:3000 --env-file .env mountain-hut-scraper",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f app",
+    "docker:restart": "docker-compose restart app",
+    "pm2:start": "pm2 start ecosystem.config.js --env production",
+    "pm2:dev": "pm2 start ecosystem.config.js --env development",
+    "pm2:stop": "pm2 stop ecosystem.config.js",
+    "pm2:restart": "pm2 restart ecosystem.config.js",
+    "pm2:reload": "pm2 reload ecosystem.config.js",
+    "pm2:delete": "pm2 delete ecosystem.config.js",
     "pm2:logs": "pm2 logs mountain-hut-scraper",
-    "pm2:status": "pm2 list",
+    "pm2:status": "pm2 status",
     "pm2:monit": "pm2 monit",
-    "setup": "chmod +x scripts/*.sh && ./scripts/setup-service.sh",
-    "health": "curl -s http://localhost:3000/health | jq . || curl -s http://localhost:3000/health",
-    "status": "curl -s http://localhost:3000/status | jq . || curl -s http://localhost:3000/status",
-    "stats": "curl -s http://localhost:3000/stats | jq . || curl -s http://localhost:3000/stats",
-    "manual-scrape": "curl -s -X POST http://localhost:3000/scrape -H 'Content-Type: application/json' | jq . || curl -s -X POST http://localhost:3000/scrape -H 'Content-Type: application/json'"
+    "db:studio": "prisma studio",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:reset": "prisma migrate reset",
+    "build:production": "echo 'No build step required for Node.js app'",
+    "deploy:staging": "pm2 deploy ecosystem.config.js staging",
+    "deploy:production": "pm2 deploy ecosystem.config.js production",
+    "health": "curl -f http://localhost:3000/health || echo 'Server not responding'",
+    "test": "echo \"No tests specified yet\" && exit 0",
+    "lint": "echo \"No linting configured yet\" && exit 0"
   },
   "keywords": [
     "scraper",
@@ -52,13 +55,20 @@
   "author": "Matevz Klancar",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
     "node-cron": "^4.2.1",
     "pg": "^8.16.3",
     "playwright": "^1.40.0",
     "pm2": "^6.0.10",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.15.0",
+    "prisma": "^6.15.0"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -70,9 +80,5 @@
   "bugs": {
     "url": "https://github.com/matevzklancar/mountain-hut-scraper/issues"
   },
-  "homepage": "https://github.com/matevzklancar/mountain-hut-scraper#readme",
-  "devDependencies": {
-    "@prisma/client": "^6.15.0",
-    "prisma": "^6.15.0"
-  }
+  "homepage": "https://github.com/matevzklancar/mountain-hut-scraper#readme"
 }
