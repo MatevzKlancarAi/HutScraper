@@ -77,9 +77,6 @@ setup_logging() {
     # Ensure logs directory exists
     mkdir -p logs
     
-    # Create initial log files if they don't exist
-    touch logs/error.log logs/combined.log
-    
     echo "✅ Logging setup complete"
 }
 
