@@ -9,10 +9,8 @@ if [ ! -f .env.production ]; then
     exit 1
 fi
 
-# Source environment file
-set -a
-source .env.production
-set +a
+# Load environment variables (skip sourcing to avoid cron expression issues)
+echo "📋 Loading environment variables..."
 
 # Stop existing container if running
 echo "🛑 Stopping existing container..."
