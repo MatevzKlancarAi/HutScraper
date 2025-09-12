@@ -155,13 +155,9 @@ class DatabaseService {
         
         const propertyId = propertyResult.rows[0].property_id;
 
-        // Robust retry logic at transaction level to handle race conditions
-        let retryCount = 0;
-        const maxRetries = 10; // Increased from 3 to handle high concurrency
-        
-        while (retryCount < maxRetries) {
-            try {
-                return await this.transaction(async (client) => {
+        // Execute transaction once - no retries needed with auto-increment IDs
+        try {
+            return await this.transaction(async (client) => {
                     // Smart date range deletion
                     if (dateRange && dateRange.minDate && dateRange.maxDate) {
                         // Delete only dates within the scraped range
@@ -183,16 +179,13 @@ class DatabaseService {
                         return;
                     }
 
-                    // Get current max ID within this transaction for safety
-                    const maxIdResult = await client.query('SELECT COALESCE(MAX(id), 0) as max_id FROM availability.available_dates');
-                    let currentId = parseInt(maxIdResult.rows[0].max_id) + 1;
-
-                    // Build values array for batch insert with manual IDs
-                    const values = [];
-                    const params = [];
-                    let paramIndex = 1;
-
-                    for (const dateEntry of availableDates) {
+                    // Use timestamp-based ID generation to avoid sequence permissions and collisions
+                    // Generate IDs based on current timestamp + incremental offset to ensure uniqueness
+                    const baseId = Date.now() * 1000; // Microsecond-level precision
+                    let insertedCount = 0;
+                    
+                    for (let i = 0; i < availableDates.length; i++) {
+                        const dateEntry = availableDates[i];
                         let date, canCheckin, canCheckout;
                         
                         if (typeof dateEntry === 'string') {
@@ -207,50 +200,29 @@ class DatabaseService {
                             canCheckout = dateEntry.can_checkout !== false; // Default to true
                         }
 
-                        values.push(`($${paramIndex}, $${paramIndex + 1}, $${paramIndex + 2}, $${paramIndex + 3}, $${paramIndex + 4}, $${paramIndex + 5}, CURRENT_TIMESTAMP)`);
-                        params.push(currentId, propertyId, roomTypeId, date, canCheckin, canCheckout);
-                        paramIndex += 6;
-                        currentId++;
-                    }
+                        // Generate unique ID using timestamp + index + random component
+                        const uniqueId = baseId + i + Math.floor(Math.random() * 1000);
 
-                    // Single batch INSERT with manual IDs and ON CONFLICT handling
-                    const insertQuery = `
-                        INSERT INTO availability.available_dates (id, property_id, room_type_id, date, can_checkin, can_checkout, scraped_at)
-                        VALUES ${values.join(', ')}
-                        ON CONFLICT (property_id, room_type_id, date) DO UPDATE SET
-                            can_checkin = EXCLUDED.can_checkin,
-                            can_checkout = EXCLUDED.can_checkout,
-                            scraped_at = CURRENT_TIMESTAMP;
-                    `;
+                        // Individual INSERT with manual ID and ON CONFLICT handling
+                        const insertQuery = `
+                            INSERT INTO availability.available_dates (id, property_id, room_type_id, date, can_checkin, can_checkout, scraped_at)
+                            VALUES ($1, $2, $3, $4, $5, $6, CURRENT_TIMESTAMP)
+                            ON CONFLICT (property_id, room_type_id, date) DO UPDATE SET
+                                can_checkin = EXCLUDED.can_checkin,
+                                can_checkout = EXCLUDED.can_checkout,
+                                scraped_at = CURRENT_TIMESTAMP;
+                        `;
+                        
+                        await client.query(insertQuery, [uniqueId, propertyId, roomTypeId, date, canCheckin, canCheckout]);
+                        insertedCount++;
+                    }
                     
-                    await client.query(insertQuery, params);
-                    console.log(`   ✅ Inserted ${availableDates.length} available dates`);
+                    console.log(`   ✅ Inserted ${insertedCount} available dates`);
                 });
                 
-            } catch (error) {
-                // Check if this is a duplicate key error on the primary key
-                if (error.code === '23505' && error.constraint === 'available_dates_pkey') {
-                    retryCount++;
-                    console.log(`   ⚠️  ID collision detected (attempt ${retryCount}/${maxRetries}), retrying entire transaction...`);
-                    
-                    if (retryCount >= maxRetries) {
-                        console.error(`   ❌ Max retries (${maxRetries}) reached for ID generation`);
-                        throw error;
-                    }
-                    
-                    // Exponential backoff with jitter to prevent synchronized retries
-                    // Base delay: 2^retryCount * 50ms + random jitter up to 200ms
-                    const baseDelay = Math.pow(2, retryCount) * 50;
-                    const jitter = Math.random() * 200;
-                    const totalDelay = baseDelay + jitter;
-                    
-                    console.log(`   🔄 Waiting ${Math.round(totalDelay)}ms before retry ${retryCount + 1}...`);
-                    await new Promise(resolve => setTimeout(resolve, totalDelay));
-                } else {
-                    // Different error, don't retry
-                    throw error;
-                }
-            }
+        } catch (error) {
+            console.error('   ❌ Database upsert failed:', error.message);
+            throw error;
         }
     }
 
