@@ -139,52 +139,107 @@ class CaptchaSolver {
         'Invalid captcha'
       ];
 
-      // Check for error message in various ways
+      // First check for visible text elements with explicit visibility check
       for (const errorText of errorTexts) {
-        // Check visible text with timeout
-        const hasErrorText = await frame.getByText(errorText).count() > 0;
-        if (hasErrorText) {
-          logger.debug(`Found error text: "${errorText}"`);
-          return true;
-        }
+        try {
+          // Use more specific locator to check for exact text match
+          const errorLocator = frame.getByText(errorText, { exact: false });
+          const count = await errorLocator.count({ timeout: 1000 }).catch(() => 0);
 
-        // Check in any element containing this text with visibility check
-        const errorElements = frame.locator(`*:has-text("${errorText}")`);
-        const count = await errorElements.count();
-        if (count > 0) {
-          // Check if any of these are actually visible
-          for (let i = 0; i < count; i++) {
-            const element = errorElements.nth(i);
-            const isVisible = await element.isVisible({ timeout: 500 }).catch(() => false);
-            if (isVisible) {
-              logger.debug(`Found visible error element: "${errorText}"`);
-              return true;
+          if (count > 0) {
+            // Check if any of these are actually visible
+            for (let i = 0; i < count; i++) {
+              const element = errorLocator.nth(i);
+              const isVisible = await element.isVisible({ timeout: 200 }).catch(() => false);
+
+              if (isVisible) {
+                // Double check by getting the text content to make sure it's not empty
+                const textContent = await element.textContent({ timeout: 200 }).catch(() => '');
+                if (textContent.trim().length > 0) {
+                  logger.debug(`Found visible error text: "${errorText}" - content: "${textContent.substring(0, 100)}"`);
+                  return true;
+                }
+              }
+            }
+          }
+        } catch (e) {
+          // Continue to next error text
+          continue;
+        }
+      }
+
+      // Fallback - check for elements containing error text using CSS selectors
+      const errorSelectors = [
+        '.error:visible',
+        '.alert-danger:visible',
+        '.text-danger:visible',
+        '[style*="color: red"]:visible',
+        '[style*="color:#red"]:visible',
+        '.captcha-error:visible',
+        '.validation-error:visible'
+      ];
+
+      for (const selector of errorSelectors) {
+        try {
+          const errorElements = frame.locator(selector.replace(':visible', ''));
+          const count = await errorElements.count({ timeout: 500 }).catch(() => 0);
+
+          if (count > 0) {
+            for (let i = 0; i < count; i++) {
+              const element = errorElements.nth(i);
+              const isVisible = await element.isVisible({ timeout: 200 }).catch(() => false);
+
+              if (isVisible) {
+                const textContent = await element.textContent({ timeout: 200 }).catch(() => '');
+                // Check if the error element contains captcha-related error text
+                for (const errorText of errorTexts) {
+                  if (textContent.toLowerCase().includes(errorText.toLowerCase())) {
+                    logger.debug(`Found visible error element with class containing: "${errorText}"`);
+                    return true;
+                  }
+                }
+              }
+            }
+          }
+        } catch (e) {
+          continue;
+        }
+      }
+
+      // Additional check: look for any element that contains error text and is visible
+      try {
+        const allElements = frame.locator('*');
+        const elementCount = await allElements.count({ timeout: 1000 }).catch(() => 0);
+
+        // Limit check to first 50 elements to avoid performance issues
+        const checkLimit = Math.min(elementCount, 50);
+
+        for (let i = 0; i < checkLimit; i++) {
+          const element = allElements.nth(i);
+          const isVisible = await element.isVisible({ timeout: 100 }).catch(() => false);
+
+          if (isVisible) {
+            const textContent = await element.textContent({ timeout: 100 }).catch(() => '');
+
+            for (const errorText of errorTexts) {
+              if (textContent.toLowerCase().includes(errorText.toLowerCase()) && textContent.trim().length > 0) {
+                logger.debug(`Found visible element containing error text: "${errorText}"`);
+                return true;
+              }
             }
           }
         }
+      } catch (e) {
+        // Ignore and continue
       }
 
-      // Fallback - check for red error styling or error classes
-      const errorClasses = frame.locator('.error, .alert-danger, .text-danger, [style*="color: red"], [style*="color:#red"]');
-      const errorClassCount = await errorClasses.count();
-
-      if (errorClassCount > 0) {
-        // Check if any error elements are actually visible
-        for (let i = 0; i < errorClassCount; i++) {
-          const errorElement = errorClasses.nth(i);
-          const isVisible = await errorElement.isVisible({ timeout: 500 }).catch(() => false);
-          if (isVisible) {
-            logger.debug(`Found visible error element with error class`);
-            return true;
-          }
-        }
-      }
-
+      logger.debug("No captcha error message found - form appears valid");
       return false;
     } catch (error) {
       logger.debug("Error checking captcha error message", {
         error: error.message
       });
+      // On error, assume no error message to avoid false positives
       return false;
     }
   }
@@ -278,7 +333,11 @@ class CaptchaSolver {
       const hasError = await this.hasErrorMessage();
       const isCorrect = !hasError;
 
-      logger.debug(`Captcha answer ${answer}: hasError=${hasError}, isCorrect=${isCorrect}`);
+      if (isCorrect) {
+        logger.info(`✅ Captcha answer ${answer} appears correct - no error message found`);
+      } else {
+        logger.debug(`❌ Captcha answer ${answer} incorrect - error message still present`);
+      }
 
       return isCorrect;
     } catch (error) {
@@ -314,16 +373,33 @@ class CaptchaSolver {
 
       // Second approach: Brute force from 0 to maxNumber
       logger.info("Trying brute force approach for captcha");
+      logger.info(`Will try answers from ${this.config.booking.captcha.startNumber} to ${this.config.booking.captcha.maxNumber}`);
 
       for (let answer = this.config.booking.captcha.startNumber; answer <= this.config.booking.captcha.maxNumber; answer++) {
+        logger.debug(`Trying brute force answer ${answer}/${this.config.booking.captcha.maxNumber}`);
+
         const isCorrect = await this.tryAnswer(answer);
         if (isCorrect) {
-          logger.info(`Captcha solved with brute force answer: ${answer}`);
+          logger.info(`✅ Captcha solved with brute force answer: ${answer}`);
+          // Take a screenshot of the successful state
+          await this.debugScreenshot(`captcha-solved-${answer}`);
           return answer;
         }
 
-        // Add a longer delay between attempts for brute force
-        await this.page.waitForTimeout(this.config.booking.captcha.delayBetweenAttempts);
+        // Check if we should continue or if there's been an unexpected error
+        try {
+          // Quick check to see if the page is still responsive
+          const frame = this.page.frameLocator('iframe[src*="bentral.com"]');
+          await frame.locator('body').count({ timeout: 1000 });
+        } catch (e) {
+          logger.warn("Page may have become unresponsive during captcha solving");
+          break;
+        }
+
+        // Add a delay between attempts for brute force (but shorter than before)
+        if (answer < this.config.booking.captcha.maxNumber) {
+          await this.page.waitForTimeout(this.config.booking.captcha.delayBetweenAttempts);
+        }
       }
 
       logger.error("Failed to solve captcha with all approaches");

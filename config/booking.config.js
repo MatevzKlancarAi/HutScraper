@@ -72,17 +72,17 @@ module.exports = {
     // Browser settings
     browser: {
       headless: false, // Set to true for production
-      slowMo: 200, // Delay between actions (ms) - reduced from 1000
-      timeout: 15000, // Default timeout (ms) - reduced from 30000
+      slowMo: 100, // Delay between actions (ms) - further reduced for speed
+      timeout: 10000, // Default timeout (ms) - further reduced
     },
 
-    // Form filling delays
+    // Form filling delays - optimized for speed
     delays: {
-      afterLogin: 500, // reduced from 2000
-      afterSelection: 300, // reduced from 1000
-      afterInput: 100, // reduced from 500
-      captchaAttempt: 100, // reduced from 500
-      beforeSubmit: 300 // reduced from 1000
+      afterLogin: 300, // further reduced
+      afterSelection: 200, // further reduced
+      afterInput: 50, // further reduced
+      captchaAttempt: 50, // further reduced
+      beforeSubmit: 200 // further reduced
     },
 
     // Retry settings
@@ -92,11 +92,11 @@ module.exports = {
       maxFormSubmitAttempts: 3
     },
 
-    // Captcha solving
+    // Captcha solving - optimized for speed
     captcha: {
       maxNumber: 20,
       startNumber: 0,
-      delayBetweenAttempts: 100 // reduced from 500
+      delayBetweenAttempts: 50 // further reduced for faster brute force
     }
   },
 

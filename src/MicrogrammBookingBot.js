@@ -226,18 +226,18 @@ class MicrogrammBookingBot {
       logger.info(`Selecting room type: ${roomType}`);
 
       // Wait for the iframe to load
-      await this.page.waitForTimeout(2000);
+      await this.page.waitForTimeout(1000);
 
       // Wait for the Bentral iframe to appear
       logger.info('Waiting for Bentral iframe to load...');
-      await this.page.waitForSelector('iframe[src*="bentral.com"]', { timeout: 8000 });
+      await this.page.waitForSelector('iframe[src*="bentral.com"]', { timeout: 5000 });
 
       // Get the iframe context
       const frame = this.page.frameLocator('iframe[src*="bentral.com"]');
       logger.info('✅ Found Bentral iframe, switching to iframe context');
 
       // Wait for the room dropdown to appear inside the iframe
-      await frame.locator('select[name="unit[]"]').waitFor({ timeout: 5000 });
+      await frame.locator('select[name="unit[]"]').waitFor({ timeout: 3000 });
       logger.info('✅ Found room dropdown inside iframe');
 
       // Map room types to values (using values from the HTML you provided)
@@ -345,7 +345,7 @@ class MicrogrammBookingBot {
 
     while (!currentMonth.includes(targetMonth) && attempts < maxAttempts) {
       await frame.locator('.datepicker-days .next').first().click();
-      await this.page.waitForTimeout(500);
+      await this.page.waitForTimeout(200);
       currentMonth = await frame.locator('.datepicker-switch').first().textContent();
       attempts++;
     }
@@ -517,9 +517,9 @@ class MicrogrammBookingBot {
       // Get iframe context
       const frame = this.page.frameLocator('iframe[src*="bentral.com"]');
 
-      // Look for payment method radio buttons or select
+      // Look for payment method radio buttons or select with shorter timeout
       const paymentOptions = frame.locator('input[type="radio"][value*="ponudbo"], input[type="radio"][value*="offer"], select[name*="payment"] option, input[name*="payment"]');
-      const optionCount = await paymentOptions.count();
+      const optionCount = await paymentOptions.count().catch(() => 0);
 
       if (optionCount === 0) {
         logger.warn('Payment method options not found, assuming single payment method');
@@ -531,72 +531,210 @@ class MicrogrammBookingBot {
       for (let i = 0; i < optionCount; i++) {
         const option = paymentOptions.nth(i);
 
-        // Get the value and any associated label text
-        const value = await option.getAttribute('value').catch(() => '');
-        const text = await option.textContent().catch(() => '');
+        // Get the value and any associated label text with timeout
+        const value = await option.getAttribute('value', { timeout: 2000 }).catch(() => '');
+        const text = await option.textContent({ timeout: 2000 }).catch(() => '');
 
         // Look for text near the option (for radio buttons)
-        const parentText = await option.locator('..').textContent().catch(() => '');
+        const parentText = await option.locator('..').textContent({ timeout: 2000 }).catch(() => '');
 
         if ((value && (value.toLowerCase().includes('ponudbo') || value.toLowerCase().includes('offer'))) ||
             (text && (text.toLowerCase().includes('ponudbo') || text.toLowerCase().includes('offer'))) ||
             (parentText && (parentText.toLowerCase().includes('ponudbo') || parentText.toLowerCase().includes('offer')))) {
 
-          // Click the radio button or select the option
-          if (await option.getAttribute('type') === 'radio') {
-            await option.check();
-            await this.page.waitForTimeout(200); // Wait for selection to register
+          logger.info(`Found payment option: "${text || value}" with parent text: "${parentText.substring(0, 50)}"`);
 
-            // Verify it's actually checked
-            const isChecked = await option.isChecked();
-            if (isChecked) {
-              logger.info('✅ Selected payment method radio: ponudbo (verified checked)');
+          try {
+            // Click the radio button or select the option
+            if (await option.getAttribute('type') === 'radio') {
+              // Scroll into view first
+              await option.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => {});
+
+              // Try multiple approaches to select the radio button
+              let success = false;
+
+              // Approach 1: Regular check()
+              try {
+                await option.check({ timeout: 3000 });
+                await this.page.waitForTimeout(200);
+                const isChecked1 = await option.isChecked().catch(() => false);
+                if (isChecked1) {
+                  logger.info('✅ Selected payment method radio with check(): ponudbo');
+                  success = true;
+                }
+              } catch (checkError) {
+                logger.debug('Regular check failed, trying other methods');
+              }
+
+              // Approach 2: Force click if check failed
+              if (!success) {
+                try {
+                  await option.click({ force: true, timeout: 3000 });
+                  await this.page.waitForTimeout(200);
+                  const isChecked2 = await option.isChecked().catch(() => false);
+                  if (isChecked2) {
+                    logger.info('✅ Selected payment method radio with force click: ponudbo');
+                    success = true;
+                  }
+                } catch (forceClickError) {
+                  logger.debug('Force click failed, trying JavaScript');
+                }
+              }
+
+              // Approach 3: JavaScript click
+              if (!success) {
+                try {
+                  await option.evaluate(el => {
+                    el.click();
+                    el.checked = true;
+                    // Trigger change event
+                    el.dispatchEvent(new Event('change', { bubbles: true }));
+                    el.dispatchEvent(new Event('input', { bubbles: true }));
+                  });
+                  await this.page.waitForTimeout(200);
+                  const isChecked3 = await option.isChecked().catch(() => false);
+                  if (isChecked3) {
+                    logger.info('✅ Selected payment method radio with JS: ponudbo');
+                    success = true;
+                  }
+                } catch (jsError) {
+                  logger.debug('JavaScript click failed, trying direct property set');
+                }
+              }
+
+              // Approach 4: Direct property setting
+              if (!success) {
+                try {
+                  await option.evaluate(el => {
+                    // Uncheck all other radios in the same group first
+                    const radios = el.form?.querySelectorAll(`input[name="${el.name}"]`) ||
+                                  document.querySelectorAll(`input[name="${el.name}"]`);
+                    radios.forEach(r => r.checked = false);
+
+                    // Check this radio
+                    el.checked = true;
+
+                    // Trigger all possible events
+                    ['click', 'change', 'input'].forEach(eventType => {
+                      el.dispatchEvent(new Event(eventType, { bubbles: true }));
+                    });
+                  });
+                  await this.page.waitForTimeout(300);
+                  const isChecked4 = await option.isChecked().catch(() => false);
+                  if (isChecked4) {
+                    logger.info('✅ Selected payment method radio with property setting: ponudbo');
+                    success = true;
+                  }
+                } catch (propError) {
+                  logger.debug('Property setting failed');
+                }
+              }
+
+              if (!success) {
+                logger.warn('⚠️ All payment method selection attempts failed');
+              }
             } else {
-              logger.warn('⚠️ Payment method radio not checked, trying click instead');
-              await option.click();
-              await this.page.waitForTimeout(100);
+              await option.click({ timeout: 5000 });
+              logger.info('✅ Selected payment method option: ponudbo');
             }
-          } else {
-            await option.click();
-            logger.info('✅ Selected payment method option: ponudbo');
+            found = true;
+            break;
+          } catch (clickError) {
+            logger.debug(`Failed to click payment option: ${clickError.message}`);
+            continue;
           }
-          found = true;
-          break;
         }
       }
 
       if (!found) {
         // Fallback: look for any radio buttons and select the first one that looks like an offer
         const allRadios = frame.locator('input[type="radio"]');
-        const radioCount = await allRadios.count();
+        const radioCount = await allRadios.count({ timeout: 3000 }).catch(() => 0);
 
         for (let i = 0; i < radioCount; i++) {
           const radio = allRadios.nth(i);
-          const nearbyText = await radio.locator('..').textContent().catch(() => '');
+          const nearbyText = await radio.locator('..').textContent({ timeout: 2000 }).catch(() => '');
 
           if (nearbyText.toLowerCase().includes('prejeti') ||
               nearbyText.toLowerCase().includes('ponudbo') ||
               nearbyText.toLowerCase().includes('offer')) {
-            await radio.check();
-            await this.page.waitForTimeout(200);
 
-            // Verify it's actually checked
-            const isChecked = await radio.isChecked();
-            if (isChecked) {
-              logger.info('✅ Selected payment method radio (fallback): ' + nearbyText.substring(0, 50));
-            } else {
-              logger.warn('⚠️ Payment method radio not checked (fallback), trying click');
-              await radio.click();
-              await this.page.waitForTimeout(100);
+            try {
+              // Scroll into view first
+              await radio.scrollIntoViewIfNeeded({ timeout: 1000 }).catch(() => {});
+
+              let fallbackSuccess = false;
+
+              // Fallback Approach 1: Regular check
+              try {
+                await radio.check({ timeout: 2000 });
+                await this.page.waitForTimeout(200);
+                const isChecked1 = await radio.isChecked().catch(() => false);
+                if (isChecked1) {
+                  logger.info('✅ Selected payment method radio (fallback check): ' + nearbyText.substring(0, 50));
+                  found = true;
+                  fallbackSuccess = true;
+                }
+              } catch (e) {
+                // Continue to next approach
+              }
+
+              // Fallback Approach 2: Force click
+              if (!fallbackSuccess) {
+                try {
+                  await radio.click({ force: true, timeout: 2000 });
+                  await this.page.waitForTimeout(200);
+                  const isChecked2 = await radio.isChecked().catch(() => false);
+                  if (isChecked2) {
+                    logger.info('✅ Selected payment method radio (fallback force): ' + nearbyText.substring(0, 50));
+                    found = true;
+                    fallbackSuccess = true;
+                  }
+                } catch (e) {
+                  // Continue to next approach
+                }
+              }
+
+              // Fallback Approach 3: JavaScript with events
+              if (!fallbackSuccess) {
+                try {
+                  await radio.evaluate(el => {
+                    // Uncheck all radios with same name first
+                    const allRadios = el.form?.querySelectorAll(`input[name="${el.name}"]`) ||
+                                     document.querySelectorAll(`input[name="${el.name}"]`);
+                    allRadios.forEach(r => r.checked = false);
+
+                    // Check this radio and trigger events
+                    el.checked = true;
+                    ['click', 'change', 'input'].forEach(eventType => {
+                      el.dispatchEvent(new Event(eventType, { bubbles: true }));
+                    });
+                  });
+                  await this.page.waitForTimeout(300);
+                  const isChecked3 = await radio.isChecked().catch(() => false);
+                  if (isChecked3) {
+                    logger.info('✅ Selected payment method radio (fallback JS): ' + nearbyText.substring(0, 50));
+                    found = true;
+                    fallbackSuccess = true;
+                  }
+                } catch (e) {
+                  // Final attempt failed
+                }
+              }
+
+              if (fallbackSuccess) {
+                break;
+              }
+            } catch (fallbackError) {
+              logger.debug(`Fallback radio click failed: ${fallbackError.message}`);
+              continue;
             }
-            found = true;
-            break;
           }
         }
       }
 
       if (!found) {
-        logger.warn('Payment method "ponudbo" not found');
+        logger.warn('Payment method "ponudbo" not found, but continuing...');
       }
 
       this.addStep('payment_selection', 'Selected payment method: ponudbo');
@@ -649,7 +787,7 @@ class MicrogrammBookingBot {
             buttonFound = true;
 
             // Wait for the next page to load
-            await this.page.waitForTimeout(500);
+            await this.page.waitForTimeout(300);
 
             this.addStep('proceed_next_step', `Clicked next step button: ${text || value}`);
             break;
