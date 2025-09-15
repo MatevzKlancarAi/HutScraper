@@ -12,6 +12,7 @@ const scheduler = require('./jobs/scheduler');
 const healthRoutes = require('./routes/health');
 const scrapingRoutes = require('./routes/scraping');
 const availabilityRoutes = require('./routes/availability');
+const bookingRoutes = require('./routes/booking');
 const errorHandler = require('./middleware/errorHandler');
 
 class MountainHutServer {
@@ -85,6 +86,7 @@ class MountainHutServer {
             this.app.use('/health', healthRoutes);
             this.app.use('/api/v1/scraping', scrapingRoutes);
             this.app.use('/api/v1/availability', availabilityRoutes);
+            this.app.use('/api/v1/booking', bookingRoutes);
 
             // Root endpoint
             this.app.get('/', (req, res) => {
@@ -96,7 +98,8 @@ class MountainHutServer {
                     endpoints: {
                         health: '/health',
                         scraping: '/api/v1/scraping',
-                        availability: '/api/v1/availability'
+                        availability: '/api/v1/availability',
+                        booking: '/api/v1/booking'
                     }
                 });
             });
