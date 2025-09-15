@@ -1,0 +1,1 @@
+docker run -d --name mountain-huts-scraper-prod --restart unless-stopped -p 3000:3000 --env-file .env.production -e DATABASE_URL="postgresql://availability_activities:QDPCFvH4Jhr5QPozTy2f@159.69.183.35:5432/world_discovery?schema=availability" mountain-huts-scraper:latest
