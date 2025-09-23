@@ -208,7 +208,7 @@ class MicrogrammBookingBot {
         throw new Error(`No hut links found on the page`);
       }
 
-      await this.page.waitForTimeout(this.config.booking.delays.afterSelection);
+      await this.page.waitForTimeout(100); // Reduced from config delay
       this.addStep('hut_selection', `Selected hut: ${hutName}`);
 
     } catch (error) {
@@ -226,19 +226,22 @@ class MicrogrammBookingBot {
       logger.info(`Selecting room type: ${roomType}`);
 
       // Wait for the iframe to load
-      await this.page.waitForTimeout(1000);
+      await this.page.waitForTimeout(300);
 
       // Wait for the Bentral iframe to appear
       logger.info('Waiting for Bentral iframe to load...');
-      await this.page.waitForSelector('iframe[src*="bentral.com"]', { timeout: 5000 });
+      await this.page.waitForSelector('iframe[src*="bentral.com"]', { timeout: 6000 });
 
       // Get the iframe context
       const frame = this.page.frameLocator('iframe[src*="bentral.com"]');
       logger.info('✅ Found Bentral iframe, switching to iframe context');
 
-      // Wait for the room dropdown to appear inside the iframe
-      await frame.locator('select[name="unit[]"]').waitFor({ timeout: 3000 });
+      // Wait for the room dropdown to appear inside the iframe and be enabled
+      await frame.locator('select[name="unit[]"]').waitFor({ state: 'visible', timeout: 6000 });
       logger.info('✅ Found room dropdown inside iframe');
+
+      // Additional wait to ensure dropdown is fully loaded with options
+      await this.page.waitForTimeout(200);
 
       // Map room types to values (using values from the HTML you provided)
       let selectedValue = null;
@@ -254,12 +257,31 @@ class MicrogrammBookingBot {
 
       logger.info(`Selecting room with value: ${selectedValue}`);
 
-      // Select the room option inside the iframe
-      await frame.locator('select[name="unit[]"]').selectOption(selectedValue);
+      // Select the room option inside the iframe with verification
+      const roomSelect = frame.locator('select[name="unit[]"]');
+      await roomSelect.selectOption(selectedValue);
 
-      logger.info(`Successfully selected room type in iframe`);
+      // Wait and verify the selection was successful
+      await this.page.waitForTimeout(500);
+      const selectedValue_verify = await roomSelect.inputValue();
 
-      await this.page.waitForTimeout(this.config.booking.delays.afterSelection);
+      if (selectedValue_verify === selectedValue) {
+        logger.info(`✅ Successfully selected room type in iframe (verified: ${selectedValue})`);
+      } else {
+        logger.warn(`⚠️ Room selection may have failed. Expected: ${selectedValue}, Got: ${selectedValue_verify}`);
+        // Retry once
+        await this.page.waitForTimeout(1000);
+        await roomSelect.selectOption(selectedValue);
+        await this.page.waitForTimeout(500);
+        const retryValue = await roomSelect.inputValue();
+        if (retryValue === selectedValue) {
+          logger.info(`✅ Room selection successful on retry (verified: ${selectedValue})`);
+        } else {
+          throw new Error(`Room selection failed even after retry. Expected: ${selectedValue}, Got: ${retryValue}`);
+        }
+      }
+
+      await this.page.waitForTimeout(100); // Reduced from config delay
       this.addStep('room_selection', `Selected room type: ${roomType}`);
 
     } catch (error) {
@@ -518,7 +540,7 @@ class MicrogrammBookingBot {
       const frame = this.page.frameLocator('iframe[src*="bentral.com"]');
 
       // Look for payment method radio buttons or select with shorter timeout
-      const paymentOptions = frame.locator('input[type="radio"][value*="ponudbo"], input[type="radio"][value*="offer"], select[name*="payment"] option, input[name*="payment"]');
+      const paymentOptions = frame.locator('input[type="radio"][value="inquiry"], input[type="radio"][value*="ponudbo"], input[type="radio"][value*="offer"], select[name*="payment"] option, input[name*="payment"]');
       const optionCount = await paymentOptions.count().catch(() => 0);
 
       if (optionCount === 0) {
@@ -532,15 +554,15 @@ class MicrogrammBookingBot {
         const option = paymentOptions.nth(i);
 
         // Get the value and any associated label text with timeout
-        const value = await option.getAttribute('value', { timeout: 2000 }).catch(() => '');
-        const text = await option.textContent({ timeout: 2000 }).catch(() => '');
+        const value = await option.getAttribute('value', { timeout: 500 }).catch(() => '');
+        const text = await option.textContent({ timeout: 500 }).catch(() => '');
 
         // Look for text near the option (for radio buttons)
-        const parentText = await option.locator('..').textContent({ timeout: 2000 }).catch(() => '');
+        const parentText = await option.locator('..').textContent({ timeout: 500 }).catch(() => '');
 
-        if ((value && (value.toLowerCase().includes('ponudbo') || value.toLowerCase().includes('offer'))) ||
+        if ((value && (value === 'inquiry' || value.toLowerCase().includes('ponudbo') || value.toLowerCase().includes('offer'))) ||
             (text && (text.toLowerCase().includes('ponudbo') || text.toLowerCase().includes('offer'))) ||
-            (parentText && (parentText.toLowerCase().includes('ponudbo') || parentText.toLowerCase().includes('offer')))) {
+            (parentText && (parentText.toLowerCase().includes('ponudbo') || parentText.toLowerCase().includes('offer') || parentText.toLowerCase().includes('želim prejeti ponudbo')))) {
 
           logger.info(`Found payment option: "${text || value}" with parent text: "${parentText.substring(0, 50)}"`);
 
@@ -548,14 +570,14 @@ class MicrogrammBookingBot {
             // Click the radio button or select the option
             if (await option.getAttribute('type') === 'radio') {
               // Scroll into view first
-              await option.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => {});
+              await option.scrollIntoViewIfNeeded({ timeout: 500 }).catch(() => {});
 
               // Try multiple approaches to select the radio button
               let success = false;
 
               // Approach 1: Regular check()
               try {
-                await option.check({ timeout: 3000 });
+                await option.check({ timeout: 1000 });
                 await this.page.waitForTimeout(200);
                 const isChecked1 = await option.isChecked().catch(() => false);
                 if (isChecked1) {
@@ -569,7 +591,7 @@ class MicrogrammBookingBot {
               // Approach 2: Force click if check failed
               if (!success) {
                 try {
-                  await option.click({ force: true, timeout: 3000 });
+                  await option.click({ force: true, timeout: 1000 });
                   await this.page.waitForTimeout(200);
                   const isChecked2 = await option.isChecked().catch(() => false);
                   if (isChecked2) {
@@ -631,7 +653,15 @@ class MicrogrammBookingBot {
               }
 
               if (!success) {
-                logger.warn('⚠️ All payment method selection attempts failed');
+                logger.warn('⚠️ All payment method selection attempts failed', {
+                  value: value,
+                  text: text,
+                  parentText: parentText.substring(0, 100),
+                  isVisible: await option.isVisible().catch(() => false),
+                  isEnabled: await option.isEnabled().catch(() => false),
+                  isDisabled: await option.isDisabled().catch(() => false),
+                  boundingBox: await option.boundingBox().catch(() => null)
+                });
               }
             } else {
               await option.click({ timeout: 5000 });
@@ -1312,6 +1342,140 @@ class MicrogrammBookingBot {
         }
       }
 
+      // Select payment method on step 3 (in case it wasn't selected in step 1)
+      try {
+        // Use broader selector to find all radio buttons in payment section
+        const allRadios = frame.locator('input[type="radio"]');
+        const radioCount = await allRadios.count({ timeout: 2000 });
+
+        if (radioCount > 0) {
+          logger.info(`Found ${radioCount} radio buttons on step 3, checking for payment options...`);
+
+          // Look for "Drugo" (Other) payment option with comprehensive text checking
+          let drugoSelected = false;
+          for (let i = 0; i < radioCount; i++) {
+            const radio = allRadios.nth(i);
+            const value = await radio.getAttribute('value').catch(() => '');
+            const name = await radio.getAttribute('name').catch(() => '');
+
+            // Get text from multiple possible locations
+            const parentText = await radio.locator('..').textContent({ timeout: 1000 }).catch(() => '');
+            const nextSiblingText = await radio.locator('+ *').textContent({ timeout: 1000 }).catch(() => '');
+            const labelText = await radio.locator('~ label, + label').textContent({ timeout: 1000 }).catch(() => '');
+
+            // Debug logging
+            logger.info(`Radio ${i}: value="${value}", name="${name}", parent="${parentText.substring(0,50)}", sibling="${nextSiblingText.substring(0,50)}", label="${labelText.substring(0,50)}"`);
+
+            // Check if this is the "Drugo" (Other) option - check multiple text sources
+            const textToCheck = `${value} ${parentText} ${nextSiblingText} ${labelText}`.toLowerCase();
+
+            if (textToCheck.includes('drugo') ||
+                textToCheck.includes('other') ||
+                textToCheck.includes('ponudbo') ||
+                value.toLowerCase() === 'drugo' ||
+                value.toLowerCase() === 'inquiry') {
+
+              logger.info(`Found potential "Drugo" option at index ${i}, attempting to select...`);
+
+              try {
+                await radio.scrollIntoViewIfNeeded({ timeout: 1000 }).catch(() => {});
+
+                // Multiple selection approaches
+                let success = false;
+
+                // Approach 1: Standard check
+                try {
+                  await radio.check({ timeout: 2000 });
+                  await this.page.waitForTimeout(200);
+                  const isChecked1 = await radio.isChecked().catch(() => false);
+                  if (isChecked1) {
+                    logger.info('✅ Selected "Drugo" payment method on step 3 (check)');
+                    success = true;
+                  }
+                } catch (e) {
+                  logger.debug('Standard check failed');
+                }
+
+                // Approach 2: Force click
+                if (!success) {
+                  try {
+                    await radio.click({ force: true, timeout: 2000 });
+                    await this.page.waitForTimeout(200);
+                    const isChecked2 = await radio.isChecked().catch(() => false);
+                    if (isChecked2) {
+                      logger.info('✅ Selected "Drugo" payment method on step 3 (force click)');
+                      success = true;
+                    }
+                  } catch (e) {
+                    logger.debug('Force click failed');
+                  }
+                }
+
+                // Approach 3: JavaScript manipulation
+                if (!success) {
+                  try {
+                    await radio.evaluate(el => {
+                      // Uncheck all other radios in the same group first
+                      const radios = el.form?.querySelectorAll(`input[name="${el.name}"]`) ||
+                                    document.querySelectorAll(`input[name="${el.name}"]`);
+                      radios.forEach(r => r.checked = false);
+
+                      // Check this radio
+                      el.checked = true;
+
+                      // Trigger events
+                      ['click', 'change', 'input'].forEach(eventType => {
+                        el.dispatchEvent(new Event(eventType, { bubbles: true }));
+                      });
+                    });
+                    await this.page.waitForTimeout(300);
+                    const isChecked3 = await radio.isChecked().catch(() => false);
+                    if (isChecked3) {
+                      logger.info('✅ Selected "Drugo" payment method on step 3 (JavaScript)');
+                      success = true;
+                    }
+                  } catch (e) {
+                    logger.debug('JavaScript manipulation failed');
+                  }
+                }
+
+                if (success) {
+                  drugoSelected = true;
+                  break;
+                } else {
+                  logger.debug(`Failed to select radio ${i} with all methods`);
+                }
+              } catch (e) {
+                logger.debug(`Failed to select payment option ${i}: ${e.message}`);
+              }
+            }
+          }
+
+          if (!drugoSelected) {
+            logger.warn('⚠️ Could not find or select "Drugo" payment option on step 3');
+
+            // Fallback: try to find "Želim prejeti ponudbo" sub-option directly
+            try {
+              const ponudboRadio = frame.locator('input[type="radio"][value*="ponudbo"], input[type="radio"] + label:has-text("ponudbo")').first();
+              if (await ponudboRadio.isVisible({ timeout: 1000 })) {
+                await ponudboRadio.check({ timeout: 2000 });
+                const isChecked = await ponudboRadio.isChecked().catch(() => false);
+                if (isChecked) {
+                  logger.info('✅ Selected "ponudbo" sub-option directly on step 3');
+                  drugoSelected = true;
+                }
+              }
+            } catch (fallbackError) {
+              logger.debug('Fallback ponudbo selection also failed');
+            }
+          }
+        } else {
+          logger.info('ℹ️ No radio buttons found on step 3');
+        }
+      } catch (error) {
+        logger.warn('Error selecting payment method on step 3:', error.message);
+      }
+
       // Check required checkboxes if any
       const checkboxes = frame.locator('input[type="checkbox"]');
       const checkboxCount = await checkboxes.count();
@@ -1330,18 +1494,6 @@ class MicrogrammBookingBot {
       }
 
       await this.page.waitForTimeout(300);
-
-      // Now try to solve the captcha - it might appear after filling all fields
-      const captchaSolver = new (require('./services/captchaSolver'))(this.page, this.config);
-      const captchaAnswer = await captchaSolver.solve();
-
-      if (captchaAnswer !== null) {
-        logger.info(`✅ Captcha solved with answer: ${captchaAnswer}`);
-        this.addStep('captcha_solved', `Solved captcha with answer: ${captchaAnswer}`);
-      } else {
-        logger.info('ℹ️ No captcha found or captcha solving not needed at this step');
-        this.addStep('captcha_check', 'Checked for captcha - none found or not needed');
-      }
 
       // Take screenshot after filling everything
       await this.takeScreenshot('step3-filled-with-captcha');

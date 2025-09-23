@@ -14,8 +14,8 @@ const logger = require('../services/logger');
 const TEST_BOOKING = {
     hutName: 'Aljazev_dom_v_Vratih', // Use the working hut
     roomType: 'Triposteljna soba', // 3-bed room that we know is available
-    arrivalDate: '23.09.2025', // Known available dates
-    departureDate: '24.09.2025',
+    arrivalDate: '24.09.2025', // Known available dates
+    departureDate: '25.09.2025',
     guestName: 'John Doe',
     country: 'Slovenia',
     email: 'test@example.com',
