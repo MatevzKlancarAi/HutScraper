@@ -1,0 +1,80 @@
+{
+  "name": "mountain-hut-scraper",
+  "version": "2.0.0",
+  "description": "Mountain hut availability scraper and booking automation - Bun.js + TypeScript",
+  "type": "module",
+  "main": "src/api/server.ts",
+  "scripts": {
+    "dev": "bun --watch src/api/server.ts",
+    "start": "bun src/api/server.ts",
+    "build": "bun build src/api/server.ts --compile --outfile=dist/server",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage",
+    "test:unit": "bun test tests/unit",
+    "test:integration": "bun test tests/integration",
+    "test:e2e": "bun test tests/e2e",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "bun src/scripts/migrate.ts",
+    "db:studio": "drizzle-kit studio",
+    "db:push": "drizzle-kit push",
+    "cli:scrape": "bun src/cli/index.ts scrape",
+    "cli:book": "bun src/cli/index.ts book",
+    "cli:list": "bun src/cli/index.ts list",
+    "test:bentral": "bun scripts/test-bentral.ts",
+    "test:hut-reservation": "bun scripts/test-hut-reservation.ts",
+    "test:orchestrator": "bun scripts/test-orchestrator.ts",
+    "docker:build": "docker build -f docker/Dockerfile -t mountain-hut-scraper:latest .",
+    "docker:up": "docker-compose -f docker/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f docker/docker-compose.yml down",
+    "docker:logs": "docker-compose -f docker/docker-compose.yml logs -f app",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "fix": "biome check --write .",
+    "fix:unsafe": "biome check --write --unsafe .",
+    "typecheck": "tsc --noEmit",
+    "check": "bun run lint && bun run typecheck",
+    "quality": "bun run format && bun run check && bun run test"
+  },
+  "keywords": [
+    "scraper",
+    "mountain-hut",
+    "reservation",
+    "bentral",
+    "booking",
+    "availability",
+    "playwright",
+    "web-scraping",
+    "bun",
+    "typescript",
+    "hono",
+    "drizzle"
+  ],
+  "author": "Matevz Klancar",
+  "license": "MIT",
+  "dependencies": {
+    "croner": "^9.1.0",
+    "date-fns": "^3.3.0",
+    "drizzle-orm": "^0.30.0",
+    "hono": "^4.0.0",
+    "pino": "^8.19.0",
+    "pino-pretty": "^11.0.0",
+    "playwright": "^1.40.0",
+    "postgres": "^3.4.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@biomejs/biome": "^1.9.4",
+    "drizzle-kit": "^0.20.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matevzklancar/mountain-hut-scraper"
+  }
+}

@@ -1,0 +1,683 @@
+# Mountain Huts on hut-reservation.org
+
+Total: 666 huts across 4 countries
+
+## Austria (149 huts)
+
+- Adamek-Hütte
+- Admonter Haus
+- Adolf-Noßberger-Hütte
+- Almtaler Haus
+- Alois-Günther-Haus
+- Alpenrose-Hütte Zillertal
+- Amstettner Hütte
+- Annaberger Haus
+- Anton-Karg-Haus
+- Austria-Hütte
+- Badener Hütte
+- Berggasthof Rofan
+- Berta-Hütte
+- Bettelwurf-Hütte
+- Bonn-Matreier Hütte
+- Bosruck-Hütte
+- Buchacker Alm
+- Carl-von-Stahl-Haus
+- Chaveehut
+- Defreggerhaus
+- Dobratsch-Gipfelhaus
+- Donauland-Hütte
+- Douglasshütte
+- Dümlerhütte ÖAV
+- E.-T.-Compton-Hütte
+- Edelraute-Hütte
+- Edelweiss-Hütte am Schneeberg
+- Edmund-Graf-Hütte
+- Ennstaler-Hütte
+- Enzian-Hütte am Kieneck
+- Feichtau-Hütte
+- Ferienwiese ÖAV
+- Filmoor-Standschützen-Hütte
+- Fraganter Schutzhaus
+- Franz-Fischer-Hütte
+- Franz-Senn-Hütte
+- Frassen-Hütte
+- Freschen-Haus
+- Gablonzer Hütte
+- Gamskarkogel-Hütte
+- Glocknerhaus
+- Gloggnitzer Hütte
+- Glungezer-Hütte
+- Goferhütte
+- Goiserer Hütte
+- Goldeck-Hütte
+- Gollinghütte
+- Gosauer Brückl-Haus
+- Gruberscharten-Biwak
+- Grünburger Hütte
+- Guttenberg-Haus
+- Gwechenberg-Hütte
+- Habsburg-Haus
+- Haindlkar-Hütte
+- Hans Wödlhütte
+- Heinrich-Hueter-Hütte
+- Hess-Hütte
+- Hinteralm-Haus
+- Hochlecken-Haus
+- Hochschober-Hütte
+- Hochsengsbiwak
+- Hochweißstein-Haus
+- Hofalm-Hütte
+- Hofpürgl-Hütte
+- Hubertus-Haus
+- Hugo-Gerbers-Hütte
+- Ignaz-Mattis-Hütte
+- Innsbrucker Hütte
+- Ischler Hütte
+- Julius-Seitner-Hütte
+- Kampthaler-Hütte
+- Keinprecht-Hütte
+- Kellerjoch-Hütte
+- Klagenfurter Hütte
+- Klinkehütte
+- Kürsinger-Hütte
+- Kutatschhütte
+- Leopold Wittmaier Hütte
+- Lienzer Hütte
+- Liezener Hütte
+- Lilienfelder Hütte
+- Linzer Tauplitz-Haus
+- Linzerhaus / Wurzeralm
+- Lizumer Hütte
+- Lucknerhütte
+- Millstätter Hütte
+- Mödlinger Hütte
+- Mooshütte
+- Muttekopf-Hütte
+- Nebelsteinhütte
+- Neue Reichenberger Hütte
+- Neunkirchner Hütte
+- Oberwalder-Hütte
+- Obstansersee-Hütte
+- Otto-Haus
+- Ottokar-Kernstock-Haus
+- Peilstein-Haus
+- Peter-Anich-Hütte
+- Peter-Wiechenthaler-Hütte
+- Pfeis-Hütte
+- Porze-Hütte
+- Preintalerhütte
+- Priel-Schutzhaus
+- Pühringer-Hütte
+- Reisseckhütte
+- Reuttener Hütte
+- Rieder Hütte
+- Rotgüldensee-Hütte
+- Rottenmanner Hütte
+- Rudolf Schober Hütte
+- Rudolf-Proksch-Hütte
+- Sadnighaus
+- Salm-Hütte
+- Salzkofelhütte
+- Sarotla-Hütte
+- Sattelbergalm
+- Schneealpen-Haus
+- Schwarzenberghütte
+- Seethalerhütte
+- Sillianer Hütte
+- Simony-Hütte
+- Sölden-Hütte
+- Sonnschienhütte
+- Steinsee-Hütte
+- Stickler-Hütte
+- Stripsenjoch-Haus
+- Stubenberg-Haus
+- Südwiener Hütte
+- Tappenkarseehütte
+- testhuette_elca
+- Testhütte Carolin
+- Theodor-Körner-Hütte
+- Tilisuna-Hütte
+- Totalp-Hütte
+- Türnitzer Hütte
+- Valentinalm
+- Voisthaler-Hütte
+- Voldertalhütte
+- Wangenitzsee-Hütte
+- Welserhütte
+- Wetterkogler-Haus
+- Wolayersee-Hütte
+- Wolfsberger Hütte
+- Ybbstaler-Hütte
+- Zeller-Hütte
+- Zeppezauer-Haus
+- Zittauer Hütte
+- Zittel-Haus
+- Zollnersee-Hütte
+
+## Switzerland (270 huts)
+
+-  Albert-Heim-Hütte SAC
+- Aarbiwak SAC
+- Agroturissem Alp d'Err
+- Almagellerhütte SAC
+- Alp Rohr Berggasthaus
+- Alpe Rompiago - deaktiviert
+- Alpwirtschaft Tanzboden
+- Antica Osteria Dazio
+- Arbenbiwak SAC
+- Äugstenhütte
+- Bächlitalhütte SAC
+- Badushütte
+- Balmhornhütte SAC
+- Baltschiederklause SAC
+- Bärgbeizli Underbärgli
+- Berggasthaus Alp Catrina - gekündigt
+- Berggasthaus Alpenblick
+- Berggasthaus Brüsti
+- Berggasthaus Dürrboden
+- Berggasthaus Gitschenen
+- Berggasthaus Wildspitz
+- Berghaus Alpenrösli
+- Berghaus Alpiglen
+- Berghaus Bäregg
+- Berghaus Männdlenen
+- Berghaus Splügenpass
+- Berghotel Faulhorn
+- Berghütte Hohsaas
+- Berglihütte SAC
+- Bergrestaurant Längfluh
+- Bietschhornhütte AACB
+- Bifertenhütte AACB
+- Binntalhütte SAC
+- Bivacco Piano della Parete
+- Bivouac au Col de la Dent Blanche CAS
+- Bivouac de l'Envers des Dorées
+- Blüemlisalphütte SAC
+- Bordierhütte SAC
+- Britanniahütte SAC
+- Brochhütte
+- Brunnihütte
+- Burghütte
+- Cabane Arpitettaz CAS
+- Cabane Balavaux
+- Cabane Barraud
+- Cabane Bertol CAS
+- Cabane d’Essertze
+- Cabane d'Orny CAS
+- Cabane de Bounavaux
+- Cabane de Chanrion CAS
+- Cabane de l'A Neuve CAS
+- Cabane de la Barmaz
+- Cabane de la Dent Blanche CAS
+- Cabane de la Tourche
+- Cabane de Prafleuri
+- Cabane de Prarochet
+- Cabane de Saleinaz CAS
+- Cabane de Sorniot
+- Cabane de Tracuit CAS
+- Cabane de Valsorey CAS
+- Cabane des Audannes
+- Cabane des Clés
+- Cabane des Diablerets CAS
+- Cabane des Dix CAS
+- Cabane des Marindes
+- Cabane des Vignettes CAS
+- Cabane des Violettes CAS
+- Cabane du Carroz
+- Cabane du Fenestral
+- Cabane du Mont d’Or
+- Cabane du Mountet CAS
+- Cabane du Petit Mountet
+- Cabane du Trient CAS
+- Cabane du Vélan CAS
+- Cabane Rambert CAS
+- Calandahütte SAC
+- Camona da Maighels CAS
+- Camona da Punteglias CAS
+- Capanna Adula CAS
+- Capanna Adula UTOE
+- Capanna Alp da Canaa
+- Capanna Alpe Nimi
+- Capanna Alpe Sponda
+- Capanna Alzasca CAS
+- Capanna Arena
+- Capanna Barone
+- Capanna Basòdino (Robiei) CAS
+- Capanna Bovarina
+- Capanna Brogoldone
+- Capanna Cadlimo CAS
+- Capanna Campo Tencia CAS
+- Capanna Cava
+- Capanna Cimetta
+- Capanna Corno-Gries CAS
+- Capanna Cristallina CAS
+- Capanna da l'Albigna CAS
+- Capanna del Forno CAS
+- Capanna di Sciora CAS
+- Capanna Dötra
+- Capanna Gambarogno
+- Capanna Gesero
+- Capanna Gorda - deaktiviert
+- Capanna Grossalp
+- Capanna lo Stallone
+- Capanna Monte Bar
+- Capanna Motterascio CAS
+- Capanna Pairolo
+- Capanna Piansecco CAS
+- Capanna Poncione di Braga
+- Capanna Quarnei
+- Capanna Sasc Furä CAS
+- Capanna Scaletta
+- Capanna Tomeo
+- Carschinahütte SAC
+- Cavardirashütte SAC
+- Cesa da Sett
+- Chalet de Roseyres
+- Chalet du Hohberg
+- Chalet La Source
+- Chalet Lacombe
+- Chalet Rüeblihorn
+- Chamanna Cluozza
+- Chamanna Coaz CAS
+- Chamanna d'Es-cha CAS
+- Chamanna da Boval CAS
+- Chamanna dal Linard CAS
+- Chamanna Georgy
+- Chamanna Jenatsch CAS
+- Chamonas d'Ela CAS
+- Chamonna Lischana CAS
+- Chamonna Tuoi CAS
+- Chelenalphütte SAC
+- Chesa sut Baselgia, Stugl
+- Clubhaus Metsch
+- Clubheim Fälensee
+- Clubhütte Grubenalp
+- Cresta-Biwak SAC
+- Cufercalhütte SAC
+- Dammahütte SAC
+- Doldenhornhütte SAC
+- Domhütte SAC
+- Dossenhütte SAC
+- Etzlihütte SAC
+- Fergenhütte SAC
+- Finsteraarhornhütte SAC
+- Fluhseehütte
+- Fromatthütte
+- Fründenhütte SAC
+- Fusshornbiwak
+- Galmihornhütte
+- Gaulihütte SAC
+- Gelmerhütte SAC
+- Geltenhütte SAC
+- Glattalphütte SAC
+- Glecksteinhütte SAC
+- Grassenbiwak SAC
+- Grathaus Moron
+- Grialetsch-Hütte SAC
+- Grubenberghütte
+- Gruebenhütte AACBs
+- Gspaltenhornhütte SAC
+- Guggihütte SAC
+- Hinterbalmhütte
+- Hohganthütte
+- Hollandiahütte SAC
+- Hörnlihütte - Matterhorn Base Camp
+- Hotel Tiefenbach
+- Hüfihütte SAC
+- Hundsteinhütte SAC
+- Igloo des Pantalons Blancs
+- Jurahaus
+- Kesch-Hütte SAC
+- Kistenpasshütte
+- Konkordiahütte SAC
+- Kröntenhütte SAC
+- La Borbuintze
+- Lämmerenhütte SAC
+- Läntahütte SAC
+- Lauteraarhütte SAC
+- Leglerhütte SAC
+- Lidernenhütte SAC
+- Lobhornhütte
+- Lonza Biwak
+- Martinsmadhütte SAC
+- Medelserhütte SAC
+- Mischabelhütte AACZ
+- Mischabeljochbiwak SAC
+- Mittellegihütte
+- Mönchsjochhütte
+- Monte Rosa Hütte SAC
+- Monte-Leone-Hütte SAC
+- Munt la Reita
+- Murgseehütte
+- Mutthornhütte SAC
+- Muttseehütte SAC
+- Oberaarjochhütte SAC
+- Oberaletschhütte SAC
+- Ostello Fusio
+- Ostello GiovaniBosco
+- Ramozhütte SAC
+- Refuge des Petoudes
+- Refuge du lac de Derborence
+- Refuge Giacomini
+- Rifugio Alpe Caviano
+- Rifugio Alpe Compiett
+- Rifugio Alpe Fontana
+- Rifugio Alpe Masnée
+- Rifugio Alpe Spluga
+- Rifugio Biasagn
+- Rifugio Garzonera
+- Rifugio Giümela
+- Rifugio la Reggia
+- Rifugio Lago
+- Rifugio Maria Luisa
+- Rifugio Pian di Crest
+- Rifugio Ribia
+- Rifugio Saoseo CAS
+- Rifugio Scaradra
+- Ringelspitzhütte SAC
+- Rothornhütte SAC
+- Rotondohütte SAC
+- Rotstockhütte
+- Rottalhütte SAC
+- Rugghubelhütte SAC
+- Sägässähenki Jenisberg
+- Salbithütte SAC
+- Salbitschijenbiwak SAC
+- Sardonahütte SAC
+- Schalijochbiwak SAC
+- Schesaplana Hütte
+- Schilthornhütte
+- Schönbielhütte SAC
+- Schreckhornhütte SAC
+- Seetalhütte SAC
+- Sewenhütte SAC
+- Sidelenhütte
+- Silberhornhütte SAC
+- Silvrettahütte SAC
+- Ski- und Ferienhaus Obergestelen
+- Skihütte Elm
+- Skihütte Obererbs
+- Spannorthütte SAC
+- Spitzmeilenhütte SAC
+- Staldenmaadhütte
+- Stockhornbiwak SAC
+- Sunnehüsi
+- Sustlihütte SAC
+- Tällihütte
+- Täschhütte SAC
+- Terrihütte SAC
+- Tierberglihütte SAC
+- Tigias Plang Faller
+- Topalihütte SAC
+- Treschhütte SAC
+- Trifthütte SAC
+- Tschiervahütte SAC
+- Turtmannhütte SAC
+- Vermigel
+- Voralphütte SAC
+- Weisshornhütte SAC
+- Weissmieshütten SAC
+- Wildhornhütte SAC
+- Wildstrubelhütte SAC
+- Windegghütte SAC
+- Windgällenhütte AACZ
+- Winteregghütte
+- Zapporthütte SAC
+- Zwinglipasshütte
+- ZZZ TEST
+- ZZZ TEST Monbijouhütte
+
+## Germany (191 huts)
+
+- Alpenrosenhütte im Brixental
+- Anhalter Hütte
+- Ascher Hütte
+- Augsburger Hütte
+- August-Schuster-Haus
+- AV Testhütte
+- Bad Kissinger Hütte
+- Barmer Hütte
+- Bayreuther Hütte
+- Berg- und Skiheim Brixen im Thale
+- Berg- und Skiheim Brixen im Thale - Ferienwohnung
+- Berghaus Kleinwalsertal
+- Bergheim Au
+- Bergsteigerunterkunft Lauschige Ecke
+- Berliner Hütte
+- Biberacher Hütte
+- Bielefelder Hütte
+- Biwak - Enzianhütte Rhön
+- Blaueishütte
+- Bodenschneidhaus
+- Brandenburger Haus
+- Braunschweiger Hütte
+- Bremer Hütte
+- Brunnenkopfhäuser
+- Brünnsteinhaus
+- Clarahütte
+- DAV Edelweisshaus
+- DAV-Haus Obertauern
+- DAV-Haus-Spitzingsee
+- Dessauer Hütte
+- Dortmunder Hütte
+- Dresdner Hütte
+- Edelweisshütte
+- Elberfelder Hütte
+- Enzianhütte/Rhön
+- Erfurter Hütte
+- Essener und Rostocker Hütte
+- Falkenhütte
+- Frederic-Simms-Hütte
+- Freiburgerhütte
+- Friedrichshafener Hütte
+- Friesenberghaus
+- Fritz-Pflaum-Hütte
+- Fritz-Putz Hütte
+- Furtschaglhaus
+- Gamshütte
+- Gaudeamushütte
+- Gauenhütte
+- Gepatschhaus
+- Geraerhütte
+- Giessener Hütte
+- Gleiwitzer Hütte
+- Glorer Hütte
+- Göppinger Hütte
+- Greizer Hütte
+- Gruttenhütte
+- Gufferthütte
+- Haldenseehaus
+- Hallerangerhaus
+- Hannoverhaus
+- Hanslberghütte
+- Harpprechthaus
+- Haus Don Bosco
+- Haus Schattwald
+- Haus und Hütte Hammer
+- Haus Unken
+- Haus Wäldele
+- Heidelberger Hütte
+- Heinrich-Schwaiger-Haus
+- Herrmann-von-Barth-Hütte
+- Hexenseehütte
+- Hildesheimer Hütte
+- Hochjoch Hospiz
+- Hochrieshütte
+- Hochstubaihütte
+- Hohenzollernhaus
+- Höllentalangerhütte
+- Hüttenrunde Gipfelwege
+- Ingolstädter Haus
+- Jamtalhütte
+- Jonsdorfer Hütte
+- Jugendbildungsstätte Winterraum
+- Kaltenberghütte
+- Kansteinhütte
+- Karl-Stein-Hütte
+- Karl-von-Edel-Hütte
+- Kärlingerhaus
+- Karlsbader Hütte
+- Karwendelhaus
+- Kasseler Hütte (im Zillertal)
+- Kaufbeurer Haus
+- Kaunergrathütte
+- Kelchalm (Bochumer Hütte)
+- Klostertaler Umwelthütte
+- Knorrhütte
+- Kölner Haus
+- Konstanzer Hütte
+- Kreuzeckhaus
+- Lamsenjochhütte
+- Landsberger Hütte
+- Landshuter Europahütte
+- Langtalereckhütte
+- Lenggrieser Hütte
+- Lindauer Hütte
+- Ludwigsburger Hütte
+- Malepartushütte
+- Mannheimer Hütte
+- Martin-Busch-Hütte
+- Memminger Hütte
+- Mittenwalder Hütte
+- Münchner Haus
+- Neue Bamberger Hütte
+- Neue Bonner Hütte
+- Neue Fürther Hütte
+- Neue Heilbronner Hütte
+- Neue Magdeburger Hütte
+- Neue Prager Hütte
+- Neue Regensburger Hütte
+- Neue Reutlinger Hütte
+- Neue Thüringer Hütte
+- Neue Traunsteiner Hütte
+- Niedersachsenhaus
+- Nördlinger Hütte
+- Nürnberger Hütte
+- Obere Maxlraineralm
+- Oberlandhütte
+- Oberzalimhütte
+- Olpererhütte
+- Ostpreussenhütte
+- Ostwandlager
+- Otto- Mayr-Hütte
+- Passauer Hütte
+- Pforzheimer Hütte
+- Plauener Hütte
+- Potsdamer Hütte
+- Priener Hütte
+- Prinz-Luitpoldhaus
+- Ramshalde
+- Rappenseehütte
+- Rastkogelhütte
+- Ravensburger Hütte
+- Reichenhaller Haus
+- Reintalangerhütte
+- Richterhütte
+- Riemannhaus
+- Riffelseehütte
+- Rotwandhaus
+- Rüsselsheimer Hütte
+- Saarbrücker Hütte
+- Saupsdorfer Hütte
+- Schneibsteinhaus
+- Schönfeldhütte
+- Schwabenhaus
+- Schwarzenberghütte (DAV)
+- Schwarzwasserhütte
+- Schweinfurter Hütte
+- Sepp-Sollner-Hütte
+- Siegerlandhütte
+- Soiernhaus
+- Spitzsteinhaus
+- Starkenburger Hütte
+- Staufner Haus
+- Steinwaldhütte
+- Stöhrhaus
+- Straubinger Haus
+- Stüdlhütte
+- Stuttgarter Hütte
+- Sudetendeutsche Hütte
+- Sulzenauhütte
+- Sylvan-Hütte
+- Talherberge Zwieselstein
+- Tannheimer Hütte
+- Taschachhaus
+- Taubensteinhaus
+- Tölzer Hütte am Schafreuter
+- Traunsteiner Skihütte/ Winklmoosalm
+- Tübinger Hütte
+- Tutzinger Hütte
+- Vernagthütte
+- Vorderkaiserfeldenhütte
+- Wanderheim Kreuzmoos
+- Watzmannhaus
+- Weidener Hütte
+- Werkmannhaus
+- Westfalenhaus
+- Wiesbadener Hütte
+- Willi-Merkl-Hütte
+- Wolfratshauser Hütte
+- Wormser Hütte
+- Würgauer Haus
+- Württembergerhaus
+
+## Italy (56 huts)
+
+- Alpe Pozza "Vincenzo Lancia"
+- Altissimo "Damiano Chiesa"
+- Antermoia
+- AVS Testhütte
+- Bocca di Trat "Nino Pernici"
+- Boé
+- Brixner Hütte
+- Caré Alto "Dante Ongari"
+- Casarota "Livio Ciola"
+- Cevedale "Guido Larcher"
+- Ciampedié
+- Cima d'Asta "Ottone Brentari"
+- Corno del Renon
+- Dreischusterhütte
+- Europa
+- F.F. Tuckett e Q. Sella
+- Finonchio "Fratelli Filzi"
+- Firenze
+- Giorgio Graffer al Grosté
+- Hintergrathütte (Rif. Coston)
+- Hochfeilerhütte
+- Julius Payer Hütte (Rif. Julius Payer)
+- Laghel
+- Mandron "Città di Trento"
+- Marteller Hütte
+- Meraner Hütte
+- Monte Calino "San Pietro"
+- Monte Casale "Don Zio Pisoni"
+- Monzoni "Torquato Taramelli"
+- Müllerhütte - Rif. Cima Libera
+- Oberetteshütte
+- Peller
+- Prova
+- Radlseehütte
+- Rieserfernerhütte
+- Rifugio Franz Kostner
+- Roda di Vael
+- Rosetta "Giovanni Pedrotti"
+- Saènt "Silvio Dorigoni"
+- Schlernbödelehütte
+- Schlernhaus (Rif. Bolzano)
+- Schwarzensteinhütte (Rif. al Sasso Nero)
+- Sesvennahütte
+- Sette Selle
+- Stavèl "Francesco Denza"
+- Stivo "Prospero Marchetti"
+- Tiefrastenhütte
+- Tosa "Tommaso Pedrotti"
+- Vajolet
+- Val d'Ambiez "Silvio Agostini"
+- Val d'Amola "Giovanni Segantini"
+- Val di Fumo
+- Velo della Madonna
+- Vioz "Mantova"
+- XII Apostoli "Fratelli Garbari"
+- Zsigmondyhütte (Rif. Comici)
+
+

@@ -1,0 +1,39 @@
+# Bun configuration file
+# https://bun.sh/docs/runtime/bunfig
+
+[run]
+# Enable TypeScript decorators
+experimentalDecorators = true
+# Enable hot reloading in dev mode
+hot = true
+# Silence deprecation warnings
+silent = false
+
+[install]
+# Package manager settings
+auto = "yarn"
+production = false
+# Faster installs
+parallel = true
+
+[test]
+# Test runner configuration
+preload = ["./tests/setup.ts"]
+coverage = true
+# Use all CPU cores
+parallel = true
+
+[define]
+# Environment variable definitions
+"process.env.NODE_ENV" = "\"development\""
+
+# Path aliases (must match tsconfig.json)
+[alias]
+"@" = "./src"
+"@core" = "./src/core"
+"@providers" = "./src/providers"
+"@services" = "./src/services"
+"@api" = "./src/api"
+"@utils" = "./src/utils"
+"@types" = "./src/types"
+"@config" = "./src/config"

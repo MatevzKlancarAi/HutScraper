@@ -1,0 +1,1199 @@
+{
+  "summary": {
+    "total": 149,
+    "successful": 146,
+    "failed": 3,
+    "skipped": 0,
+    "successRate": "98.0%",
+    "duration": "110.7 minutes",
+    "avgTimePerHut": "44.6 seconds"
+  },
+  "successful": [
+    {
+      "hutId": 362,
+      "hutName": "Admonter Haus",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 408,
+      "hutName": "Adolf-Noßberger-Hütte",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 151,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 416,
+      "hutName": "Almtaler Haus",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 863
+    },
+    {
+      "hutId": 491,
+      "hutName": "Adamek-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 345
+    },
+    {
+      "hutId": 411,
+      "hutName": "Alois-Günther-Haus",
+      "country": "AT",
+      "categories": 5,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 3549
+    },
+    {
+      "hutId": 618,
+      "hutName": "Amstettner Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 303,
+      "hutName": "Alpenrose-Hütte Zillertal",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 151,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 146,
+      "hutName": "Annaberger Haus",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1352
+    },
+    {
+      "hutId": 172,
+      "hutName": "Anton-Karg-Haus",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1590
+    },
+    {
+      "hutId": 262,
+      "hutName": "Austria-Hütte",
+      "country": "AT",
+      "categories": 5,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2474
+    },
+    {
+      "hutId": 401,
+      "hutName": "Badener Hütte",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 301,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 649,
+      "hutName": "Berta-Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 171
+    },
+    {
+      "hutId": 72,
+      "hutName": "Bettelwurf-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 976
+    },
+    {
+      "hutId": 485,
+      "hutName": "Bonn-Matreier Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 837
+    },
+    {
+      "hutId": 331,
+      "hutName": "Berggasthof Rofan",
+      "country": "AT",
+      "categories": 5,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2924
+    },
+    {
+      "hutId": 599,
+      "hutName": "Buchacker Alm",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 605,
+      "hutName": "Defreggerhaus",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 596,
+      "hutName": "Bosruck-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 664
+    },
+    {
+      "hutId": 499,
+      "hutName": "Chaveehut",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2193
+    },
+    {
+      "hutId": 293,
+      "hutName": "Carl-von-Stahl-Haus",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2177
+    },
+    {
+      "hutId": 604,
+      "hutName": "Dobratsch-Gipfelhaus",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 588,
+      "hutName": "Donauland-Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 61,
+      "hutName": "Dümlerhütte ÖAV",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1462
+    },
+    {
+      "hutId": 488,
+      "hutName": "E.-T.-Compton-Hütte",
+      "country": "AT",
+      "categories": 6,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1482
+    },
+    {
+      "hutId": 393,
+      "hutName": "Douglasshütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 413
+    },
+    {
+      "hutId": 601,
+      "hutName": "Enzian-Hütte am Kieneck",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 355,
+      "hutName": "Ennstaler-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 467
+    },
+    {
+      "hutId": 493,
+      "hutName": "Edelraute-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1920
+    },
+    {
+      "hutId": 125,
+      "hutName": "Edelweiss-Hütte am Schneeberg",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1762
+    },
+    {
+      "hutId": 98,
+      "hutName": "Edmund-Graf-Hütte",
+      "country": "AT",
+      "categories": 5,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2924
+    },
+    {
+      "hutId": 383,
+      "hutName": "Feichtau-Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 730
+    },
+    {
+      "hutId": 317,
+      "hutName": "Franz-Fischer-Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 6
+    },
+    {
+      "hutId": 489,
+      "hutName": "Filmoor-Standschützen-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 474
+    },
+    {
+      "hutId": 316,
+      "hutName": "Fraganter Schutzhaus",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1942
+    },
+    {
+      "hutId": 90,
+      "hutName": "Freschen-Haus",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 121,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 675,
+      "hutName": "Franz-Senn-Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 466,
+      "totalAvailabilitySlots": 63
+    },
+    {
+      "hutId": 86,
+      "hutName": "Frassen-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1023
+    },
+    {
+      "hutId": 555,
+      "hutName": "Gamskarkogel-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 418
+    },
+    {
+      "hutId": 108,
+      "hutName": "Gablonzer Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1626
+    },
+    {
+      "hutId": 421,
+      "hutName": "Gloggnitzer Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 249,
+      "hutName": "Glocknerhaus",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 422,
+      "hutName": "Goferhütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 106,
+      "hutName": "Goiserer Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 331
+    },
+    {
+      "hutId": 62,
+      "hutName": "Glungezer-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 213
+    },
+    {
+      "hutId": 423,
+      "hutName": "Gruberscharten-Biwak",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 441,
+      "hutName": "Goldeck-Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 158,
+      "hutName": "Grünburger Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 699,
+      "hutName": "Gosauer Brückl-Haus",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 549,
+      "totalAvailabilitySlots": 517
+    },
+    {
+      "hutId": 410,
+      "hutName": "Gollinghütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1455
+    },
+    {
+      "hutId": 260,
+      "hutName": "Guttenberg-Haus",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 201,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 660,
+      "hutName": "Gwechenberg-Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 492,
+      "hutName": "Haindlkar-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 564
+    },
+    {
+      "hutId": 504,
+      "hutName": "Hans Wödlhütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 401,
+      "totalAvailabilitySlots": 471
+    },
+    {
+      "hutId": 424,
+      "hutName": "Habsburg-Haus",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2139
+    },
+    {
+      "hutId": 306,
+      "hutName": "Hess-Hütte",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 142,
+      "hutName": "Hinteralm-Haus",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 645
+    },
+    {
+      "hutId": 89,
+      "hutName": "Heinrich-Hueter-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 245
+    },
+    {
+      "hutId": 343,
+      "hutName": "Hochlecken-Haus",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1071
+    },
+    {
+      "hutId": 356,
+      "hutName": "Hochschober-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1462
+    },
+    {
+      "hutId": 328,
+      "hutName": "Hochweißstein-Haus",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 301,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 111,
+      "hutName": "Hofpürgl-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 201,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 384,
+      "hutName": "Hochsengsbiwak",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 731
+    },
+    {
+      "hutId": 503,
+      "hutName": "Hofalm-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1079
+    },
+    {
+      "hutId": 425,
+      "hutName": "Hubertus-Haus",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2178
+    },
+    {
+      "hutId": 426,
+      "hutName": "Hugo-Gerbers-Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 577,
+      "hutName": "Ignaz-Mattis-Hütte",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 320,
+      "hutName": "Innsbrucker Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 953
+    },
+    {
+      "hutId": 556,
+      "hutName": "Ischler Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1040
+    },
+    {
+      "hutId": 147,
+      "hutName": "Julius-Seitner-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 251,
+      "totalAvailabilitySlots": 437
+    },
+    {
+      "hutId": 415,
+      "hutName": "Kellerjoch-Hütte",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 669,
+      "hutName": "Keinprecht-Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 94,
+      "hutName": "Klinkehütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 177,
+      "hutName": "Kampthaler-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 549
+    },
+    {
+      "hutId": 597,
+      "hutName": "Klagenfurter Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2013
+    },
+    {
+      "hutId": 427,
+      "hutName": "Kutatschhütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 380,
+      "hutName": "Leopold Wittmaier Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 292,
+      "hutName": "Kürsinger-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1181
+    },
+    {
+      "hutId": 684,
+      "hutName": "Lienzer Hütte",
+      "country": "AT",
+      "categories": 5,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 516
+    },
+    {
+      "hutId": 123,
+      "hutName": "Lizumer Hütte",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 15,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 112,
+      "hutName": "Linzerhaus / Wurzeralm",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 428,
+      "hutName": "Lilienfelder Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1462
+    },
+    {
+      "hutId": 578,
+      "hutName": "Lucknerhütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 401,
+      "totalAvailabilitySlots": 42
+    },
+    {
+      "hutId": 113,
+      "hutName": "Linzer Tauplitz-Haus",
+      "country": "AT",
+      "categories": 5,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2924
+    },
+    {
+      "hutId": 160,
+      "hutName": "Muttekopf-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 301,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 451,
+      "hutName": "Mooshütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 273,
+      "hutName": "Millstätter Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1065
+    },
+    {
+      "hutId": 118,
+      "hutName": "Nebelsteinhütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2193
+    },
+    {
+      "hutId": 117,
+      "hutName": "Mödlinger Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 752
+    },
+    {
+      "hutId": 352,
+      "hutName": "Otto-Haus",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 429,
+      "hutName": "Neunkirchner Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 672
+    },
+    {
+      "hutId": 268,
+      "hutName": "Obstansersee-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 651,
+      "totalAvailabilitySlots": 258
+    },
+    {
+      "hutId": 545,
+      "hutName": "Neue Reichenberger Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 946
+    },
+    {
+      "hutId": 300,
+      "hutName": "Oberwalder-Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1454
+    },
+    {
+      "hutId": 375,
+      "hutName": "Ottokar-Kernstock-Haus",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 93,
+      "hutName": "Peter-Anich-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 731
+    },
+    {
+      "hutId": 179,
+      "hutName": "Pfeis-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 730,
+      "totalAvailabilitySlots": 472
+    },
+    {
+      "hutId": 141,
+      "hutName": "Peter-Wiechenthaler-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1063
+    },
+    {
+      "hutId": 430,
+      "hutName": "Peilstein-Haus",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1684
+    },
+    {
+      "hutId": 431,
+      "hutName": "Reisseckhütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 185,
+      "hutName": "Porze-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 560
+    },
+    {
+      "hutId": 402,
+      "hutName": "Preintalerhütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 735
+    },
+    {
+      "hutId": 336,
+      "hutName": "Priel-Schutzhaus",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 70
+    },
+    {
+      "hutId": 509,
+      "hutName": "Pühringer-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 251,
+      "totalAvailabilitySlots": 48
+    },
+    {
+      "hutId": 233,
+      "hutName": "Reuttener Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 248,
+      "hutName": "Rieder Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 932
+    },
+    {
+      "hutId": 187,
+      "hutName": "Rottenmanner Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1462
+    },
+    {
+      "hutId": 662,
+      "hutName": "Rotgüldensee-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1482
+    },
+    {
+      "hutId": 390,
+      "hutName": "Rudolf Schober Hütte",
+      "country": "AT",
+      "categories": 5,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2193
+    },
+    {
+      "hutId": 432,
+      "hutName": "Rudolf-Proksch-Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 252,
+      "hutName": "Salzkofelhütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 159,
+      "hutName": "Salm-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 961
+    },
+    {
+      "hutId": 88,
+      "hutName": "Sarotla-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 263
+    },
+    {
+      "hutId": 544,
+      "hutName": "Sadnighaus",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1462
+    },
+    {
+      "hutId": 433,
+      "hutName": "Schwarzenberghütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 261,
+      "hutName": "Seethalerhütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 4
+    },
+    {
+      "hutId": 466,
+      "hutName": "Sillianer Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 840
+    },
+    {
+      "hutId": 353,
+      "hutName": "Schneealpen-Haus",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 44
+    },
+    {
+      "hutId": 497,
+      "hutName": "Steinsee-Hütte",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 294,
+      "hutName": "Sölden-Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 401,
+      "totalAvailabilitySlots": 547
+    },
+    {
+      "hutId": 469,
+      "hutName": "Sonnschienhütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 691
+    },
+    {
+      "hutId": 219,
+      "hutName": "Simony-Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1308
+    },
+    {
+      "hutId": 691,
+      "hutName": "Stickler-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 181,
+      "totalAvailabilitySlots": 543
+    },
+    {
+      "hutId": 523,
+      "hutName": "Tappenkarseehütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 302,
+      "hutName": "testhuette_elca",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 731
+    },
+    {
+      "hutId": 586,
+      "hutName": "Stubenberg-Haus",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2193
+    },
+    {
+      "hutId": 184,
+      "hutName": "Stripsenjoch-Haus",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 14
+    },
+    {
+      "hutId": 186,
+      "hutName": "Südwiener Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1935
+    },
+    {
+      "hutId": 409,
+      "hutName": "Türnitzer Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 731
+    },
+    {
+      "hutId": 92,
+      "hutName": "Totalp-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2
+    },
+    {
+      "hutId": 91,
+      "hutName": "Tilisuna-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1199
+    },
+    {
+      "hutId": 403,
+      "hutName": "Theodor-Körner-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1482
+    },
+    {
+      "hutId": 587,
+      "hutName": "Testhütte Carolin",
+      "country": "AT",
+      "categories": 5,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2924
+    },
+    {
+      "hutId": 508,
+      "hutName": "Welserhütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 671,
+      "hutName": "Voldertalhütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 490,
+      "hutName": "Voisthaler-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 700
+    },
+    {
+      "hutId": 396,
+      "hutName": "Valentinalm",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1573
+    },
+    {
+      "hutId": 683,
+      "hutName": "Wangenitzsee-Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 279
+    },
+    {
+      "hutId": 471,
+      "hutName": "Wolfsberger Hütte",
+      "country": "AT",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 211,
+      "hutName": "Zeller-Hütte",
+      "country": "AT",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1366
+    },
+    {
+      "hutId": 267,
+      "hutName": "Wolayersee-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 325
+    },
+    {
+      "hutId": 434,
+      "hutName": "Wetterkogler-Haus",
+      "country": "AT",
+      "categories": 5,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 2193
+    },
+    {
+      "hutId": 253,
+      "hutName": "Ybbstaler-Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 121,
+      "totalAvailabilitySlots": 31
+    },
+    {
+      "hutId": 695,
+      "hutName": "Zittel-Haus",
+      "country": "AT",
+      "categories": 0,
+      "totalDays": 121,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 109,
+      "hutName": "Zollnersee-Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 992
+    },
+    {
+      "hutId": 295,
+      "hutName": "Zeppezauer-Haus",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1614
+    },
+    {
+      "hutId": 266,
+      "hutName": "Zittauer Hütte",
+      "country": "AT",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 376
+    }
+  ],
+  "failed": [
+    {
+      "hutId": 704,
+      "error": "Failed to fetch availability from API: Request failed with status code 500",
+      "attempts": 2
+    },
+    {
+      "hutId": 702,
+      "error": "Failed to fetch availability from API: Request failed with status code 500",
+      "attempts": 2
+    },
+    {
+      "hutId": 700,
+      "error": "Failed to fetch availability from API: Request failed with status code 500",
+      "attempts": 2
+    }
+  ],
+  "skipped": []
+}
