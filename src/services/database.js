@@ -85,63 +85,124 @@ class DatabaseService {
         const findQuery = `
             SELECT id FROM availability.properties WHERE name = $1 LIMIT 1;
         `;
-        
+
         const existingResult = await this.query(findQuery, [name]);
         if (existingResult.rows.length > 0) {
             return existingResult.rows[0].id;
         }
-        
+
         // Create new property with slug derived from name
         const slug = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        const query = `
-            INSERT INTO availability.properties (name, slug, location, booking_system, is_active)
-            VALUES ($1, $2, $3, $4, $5)
-            ON CONFLICT (slug) DO UPDATE SET
-                name = EXCLUDED.name,
-                booking_system = EXCLUDED.booking_system,
-                updated_at = CURRENT_TIMESTAMP
-            RETURNING id;
-        `;
-        
-        const locationJson = JSON.stringify({ description: description });
-        const result = await this.query(query, [name, slug, locationJson, 'Bentral', true]);
-        return result.rows[0].id;
+
+        // Use transaction with row-level lock to prevent concurrent ID collisions
+        return await this.transaction(async (client) => {
+            // Lock the table to prevent concurrent MAX(id) queries
+            await client.query('LOCK TABLE availability.properties IN SHARE ROW EXCLUSIVE MODE');
+
+            // Get next available ID (max + 1) to avoid sequence permission issues
+            const maxIdQuery = `SELECT COALESCE(MAX(id), 0) + 1 as next_id FROM availability.properties`;
+            const maxIdResult = await client.query(maxIdQuery);
+            const generatedId = maxIdResult.rows[0].next_id;
+
+            const query = `
+                INSERT INTO availability.properties (id, name, slug, location, booking_system, is_active)
+                VALUES ($1, $2, $3, $4, $5, $6)
+                ON CONFLICT (slug) DO UPDATE SET
+                    name = EXCLUDED.name,
+                    booking_system = EXCLUDED.booking_system,
+                    updated_at = CURRENT_TIMESTAMP
+                RETURNING id;
+            `;
+
+            const locationJson = JSON.stringify({ description: description });
+            const result = await client.query(query, [generatedId, name, slug, locationJson, 'hut-reservation.org', true]);
+            return result.rows[0].id;
+        });
     }
 
-    async ensureRoomType(propertyId, name, bentalId, capacity, description = null) {
+    async ensureRoomType(propertyId, name, capacityOrBentalId, capacity = null, description = null) {
+        // Support both signatures:
+        // ensureRoomType(propertyId, name, capacity) - for HutReservation
+        // ensureRoomType(propertyId, name, bentalId, capacity) - for Bentral (legacy)
+
+        let externalId = null;
+        let actualCapacity = null;
+
+        if (capacity === null) {
+            // New signature: ensureRoomType(propertyId, name, capacity)
+            actualCapacity = capacityOrBentalId;
+            externalId = null;
+        } else {
+            // Legacy signature: ensureRoomType(propertyId, name, bentalId, capacity)
+            externalId = capacityOrBentalId;
+            actualCapacity = capacity;
+        }
+
         // First check if room type exists
-        const findQuery = `
-            SELECT id FROM availability.room_types WHERE property_id = $1 AND external_id = $2 LIMIT 1;
-        `;
-        
-        const existingResult = await this.query(findQuery, [propertyId, bentalId]);
+        let findQuery;
+        let findParams;
+
+        if (externalId) {
+            // Find by external_id (for Bentral)
+            findQuery = `
+                SELECT id FROM availability.room_types WHERE property_id = $1 AND external_id = $2 LIMIT 1;
+            `;
+            findParams = [propertyId, externalId];
+        } else {
+            // Find by property_id and name (for HutReservation)
+            findQuery = `
+                SELECT id FROM availability.room_types WHERE property_id = $1 AND name = $2 LIMIT 1;
+            `;
+            findParams = [propertyId, name];
+        }
+
+        const existingResult = await this.query(findQuery, findParams);
         if (existingResult.rows.length > 0) {
             return existingResult.rows[0].id;
         }
-        
-        const query = `
-            INSERT INTO availability.room_types (property_id, external_id, name, capacity, quantity, bed_type, room_category, features, is_active, created_at, updated_at)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-            RETURNING id;
-        `;
-        
-        // Determine room category and bed type from name
-        const roomCategory = name.includes('Skupna ležišča') ? 'shared' : 'private';
-        const bedType = capacity === 1 ? '1 single bed' : capacity === 2 ? '1 double bed' : `${capacity} beds`;
-        const features = roomCategory === 'shared' ? ['shared_dormitory'] : ['private_bathroom'];
-        
-        const result = await this.query(query, [
-            propertyId, 
-            bentalId, 
-            name, 
-            capacity, 
-            1, // quantity
-            bedType,
-            roomCategory,
-            features,
-            true // is_active
+
+        // Use transaction with row-level lock to prevent concurrent ID collisions
+        return await this.transaction(async (client) => {
+            // Lock the table to prevent concurrent MAX(id) queries
+            await client.query('LOCK TABLE availability.room_types IN SHARE ROW EXCLUSIVE MODE');
+
+            // Get next available ID (max + 1) to avoid sequence permission issues
+            const maxIdQuery = `SELECT COALESCE(MAX(id), 0) + 1 as next_id FROM availability.room_types`;
+            const maxIdResult = await client.query(maxIdQuery);
+            const generatedId = maxIdResult.rows[0].next_id;
+
+            const query = `
+                INSERT INTO availability.room_types (id, property_id, external_id, name, capacity, quantity, bed_type, room_category, features, is_active, created_at, updated_at)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                RETURNING id;
+            `;
+
+            // Determine room category and bed type from name
+            const roomCategory = name.includes('Skupna ležišča') || name.includes('Dormitory') || name.includes('Matratzenlager') ? 'shared' : 'private';
+            const bedType = actualCapacity === 1 ? '1 single bed' : actualCapacity === 2 ? '1 double bed' : `${actualCapacity} beds`;
+            const features = roomCategory === 'shared' ? ['shared_dormitory'] : ['private_bathroom'];
+
+            const result = await client.query(query, [
+                generatedId,
+                propertyId,
+                externalId, // Can be null for HutReservation
+                name,
+                actualCapacity,
+                1, // quantity
+                bedType,
+                roomCategory,
+                features,
+                true // is_active
+            ]);
+            return result.rows[0].id;
+        });
+    }
+
+    async saveAvailability(propertyId, roomTypeId, date, canCheckin = true, canCheckout = true) {
+        // Simple wrapper for single date insert
+        await this.upsertAvailableDates(roomTypeId, [
+            { date, can_checkin: canCheckin, can_checkout: canCheckout }
         ]);
-        return result.rows[0].id;
     }
 
     async upsertAvailableDates(roomTypeId, availableDates, dateRange = null) {
@@ -158,12 +219,15 @@ class DatabaseService {
         // Execute transaction once - no retries needed with auto-increment IDs
         try {
             return await this.transaction(async (client) => {
+                    // Lock the table to prevent concurrent MAX(id) queries
+                    await client.query('LOCK TABLE availability.available_dates IN SHARE ROW EXCLUSIVE MODE');
+
                     // Smart date range deletion
                     if (dateRange && dateRange.minDate && dateRange.maxDate) {
                         // Delete only dates within the scraped range
                         const deleteQuery = `
-                            DELETE FROM availability.available_dates 
-                            WHERE room_type_id = $1 
+                            DELETE FROM availability.available_dates
+                            WHERE room_type_id = $1
                             AND date BETWEEN $2 AND $3
                         `;
                         await client.query(deleteQuery, [roomTypeId, dateRange.minDate, dateRange.maxDate]);
@@ -173,21 +237,24 @@ class DatabaseService {
                         await client.query('DELETE FROM availability.available_dates WHERE room_type_id = $1', [roomTypeId]);
                         console.log(`   🗑️  Deleted all existing dates for room type ${roomTypeId}`);
                     }
-                    
+
                     if (!availableDates || availableDates.length === 0) {
                         console.log(`   ⚠️  No available dates to insert`);
                         return;
                     }
 
                     // Use timestamp-based ID generation to avoid sequence permissions and collisions
-                    // Generate IDs based on current timestamp + incremental offset to ensure uniqueness
-                    const baseId = Date.now() * 1000; // Microsecond-level precision
+                    // Generate IDs using max ID + increment to ensure uniqueness
+                    const maxIdQuery = `SELECT COALESCE(MAX(id), 0) + 1 as next_id FROM availability.available_dates`;
+                    const maxIdResult = await client.query(maxIdQuery);
+                    let nextId = maxIdResult.rows[0].next_id;
+
                     let insertedCount = 0;
-                    
+
                     for (let i = 0; i < availableDates.length; i++) {
                         const dateEntry = availableDates[i];
                         let date, canCheckin, canCheckout;
-                        
+
                         if (typeof dateEntry === 'string') {
                             // Legacy format: just date string
                             date = dateEntry;
@@ -200,8 +267,9 @@ class DatabaseService {
                             canCheckout = dateEntry.can_checkout !== false; // Default to true
                         }
 
-                        // Generate unique ID using timestamp + index + random component
-                        const uniqueId = baseId + i + Math.floor(Math.random() * 1000);
+                        // Use incrementing ID from max
+                        const uniqueId = nextId++;
+
 
                         // Individual INSERT with manual ID and ON CONFLICT handling
                         const insertQuery = `

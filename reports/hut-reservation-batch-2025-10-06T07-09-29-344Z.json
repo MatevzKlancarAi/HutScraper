@@ -1,0 +1,153 @@
+{
+  "summary": {
+    "total": 19,
+    "successful": 14,
+    "failed": 5,
+    "skipped": 0,
+    "successRate": "73.7%",
+    "duration": "8.8 minutes",
+    "avgTimePerHut": "27.8 seconds"
+  },
+  "successful": [
+    {
+      "hutId": 648,
+      "hutName": "Sulzenauhütte",
+      "country": "DE",
+      "categories": 0,
+      "totalDays": 33,
+      "totalAvailabilitySlots": 0
+    },
+    {
+      "hutId": 114,
+      "hutName": "Alpenrosenhütte im Brixental",
+      "country": "DE",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 293
+    },
+    {
+      "hutId": 630,
+      "hutName": "Alpe Pozza \"Vincenzo Lancia\"",
+      "country": "IT",
+      "categories": 1,
+      "totalDays": 366,
+      "totalAvailabilitySlots": 141
+    },
+    {
+      "hutId": 1,
+      "hutName": "Blüemlisalphütte SAC",
+      "country": "CH",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 730
+    },
+    {
+      "hutId": 200,
+      "hutName": "Straubinger Haus",
+      "country": "DE",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 853
+    },
+    {
+      "hutId": 100,
+      "hutName": "Gaudeamushütte",
+      "country": "DE",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 22
+    },
+    {
+      "hutId": 400,
+      "hutName": "Cabane de Valsorey CAS",
+      "country": "CH",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 731
+    },
+    {
+      "hutId": 300,
+      "hutName": "Oberwalder-Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1454
+    },
+    {
+      "hutId": 100,
+      "hutName": "Gaudeamushütte",
+      "country": "DE",
+      "categories": 3,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 22
+    },
+    {
+      "hutId": 500,
+      "hutName": "Capanna Dötra",
+      "country": "CH",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 731
+    },
+    {
+      "hutId": 300,
+      "hutName": "Oberwalder-Hütte",
+      "country": "AT",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 1454
+    },
+    {
+      "hutId": 200,
+      "hutName": "Straubinger Haus",
+      "country": "DE",
+      "categories": 4,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 853
+    },
+    {
+      "hutId": 500,
+      "hutName": "Capanna Dötra",
+      "country": "CH",
+      "categories": 1,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 731
+    },
+    {
+      "hutId": 400,
+      "hutName": "Cabane de Valsorey CAS",
+      "country": "CH",
+      "categories": 2,
+      "totalDays": 731,
+      "totalAvailabilitySlots": 731
+    }
+  ],
+  "failed": [
+    {
+      "hutId": 600,
+      "error": "Could not fetch hut data: Request failed with status code 400",
+      "attempts": 2
+    },
+    {
+      "hutId": 700,
+      "error": "Failed to fetch availability from API: Request failed with status code 500",
+      "attempts": 2
+    },
+    {
+      "hutId": 900,
+      "error": "Could not fetch hut data: Request failed with status code 400",
+      "attempts": 2
+    },
+    {
+      "hutId": 800,
+      "error": "Could not fetch hut data: Request failed with status code 400",
+      "attempts": 2
+    },
+    {
+      "hutId": 1000,
+      "error": "Could not fetch hut data: Request failed with status code 400",
+      "attempts": 2
+    }
+  ],
+  "skipped": []
+}

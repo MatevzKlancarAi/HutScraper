@@ -1,0 +1,54 @@
+# Bun
+node_modules/
+bun.lockb
+.bun/
+
+# Compiled output
+dist/
+build/
+*.js
+*.js.map
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+coverage/
+.nyc_output/
+
+# Screenshots and results
+screenshots/
+results/
+reports/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Database
+*.db
+*.sqlite
+
+# Drizzle
+drizzle/migrations/*.sql

@@ -1,0 +1,27 @@
+# Bun configuration file
+# https://bun.sh/docs/runtime/bunfig
+
+[run]
+# Enable hot reloading in dev mode
+hot = true
+
+[install]
+# Faster installs
+parallel = true
+
+[test]
+# Test runner configuration
+preload = ["./tests/setup.ts"]
+coverage = true
+parallel = true
+
+# Path aliases (must match tsconfig.json)
+[alias]
+"@" = "./src"
+"@core" = "./src/core"
+"@providers" = "./src/providers"
+"@services" = "./src/services"
+"@api" = "./src/api"
+"@utils" = "./src/utils"
+"@types" = "./src/types"
+"@config" = "./src/config"

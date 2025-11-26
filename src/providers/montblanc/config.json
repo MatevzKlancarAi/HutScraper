@@ -1,0 +1,103 @@
+{
+  "name": "montblanc",
+  "displayName": "Mont Blanc Tour",
+  "capabilities": ["scrape"],
+  "baseUrl": "https://www.montourdumontblanc.com",
+  "rateLimit": {
+    "requestsPerMinute": 20,
+    "concurrentRequests": 1
+  },
+  "scraping": {
+    "browser": {
+      "headless": false,
+      "slowMo": 1000,
+      "timeout": 30000
+    }
+  },
+  "selectors": {
+    "bookingWidget": {
+      "container": ".moteurdispos.moteureontenu",
+      "arrivalDate": {
+        "day": "select[name='day'], #day",
+        "month": "select[name='month'], #month",
+        "year": "select[name='year'], #year"
+      },
+      "location": "select[name='location'], #location",
+      "people": "select[name='people'], #people",
+      "searchButton": "button.Search, .Search, input[type='submit']",
+      "basket": ".MY.BASKET"
+    },
+    "availability": {
+      "availableDate": ".available-date, .booking-available",
+      "unavailableDate": ".unavailable-date, .booking-unavailable",
+      "noResults": ".no-results, .error-message"
+    }
+  },
+  "huts": [
+    {
+      "id": "39948",
+      "name": "Chalet Les Méandres (ex Tupilak)",
+      "url": "/uk/il4-refuge_i39948-chalet-les-meandres-ex-tupilak.aspx",
+      "location": "Chamonix",
+      "capacity": 28,
+      "altitude": "1901m"
+    },
+    {
+      "id": "32369",
+      "name": "Gîte Michel Fagot",
+      "url": "/uk/il4-refuge_i32369-gite-michel-fagot.aspx",
+      "location": "Chamonix",
+      "capacity": 20
+    },
+    {
+      "id": "39949",
+      "name": "Refuge du Trient",
+      "url": "/uk/il4-refuge_i39949-refuge-du-trient.aspx",
+      "location": "Switzerland",
+      "capacity": 130,
+      "altitude": "3170m"
+    },
+    {
+      "id": "32371",
+      "name": "Refuge d'Argentière",
+      "url": "/uk/il4-refuge_i32371-refuge-d-argentiere.aspx",
+      "location": "Chamonix",
+      "capacity": 170,
+      "altitude": "2771m"
+    },
+    {
+      "id": "39950",
+      "name": "Cabane d'Orny",
+      "url": "/uk/il4-refuge_i39950-cabane-d-orny.aspx",
+      "location": "Switzerland",
+      "capacity": 48,
+      "altitude": "2826m"
+    },
+    {
+      "id": "32372",
+      "name": "Refuge de la Balme",
+      "url": "/uk/il4-refuge_i32372-refuge-de-la-balme.aspx",
+      "location": "Chamonix",
+      "capacity": 30,
+      "altitude": "2205m"
+    },
+    {
+      "id": "32373",
+      "name": "Refuge des Mottets",
+      "url": "/uk/il4-refuge_i32373-refuge-des-mottets.aspx",
+      "location": "Chamonix",
+      "capacity": 120,
+      "altitude": "1870m"
+    },
+    {
+      "id": "39951",
+      "name": "Refuge de la Croix du Bonhomme",
+      "url": "/uk/il4-refuge_i39951-refuge-de-la-croix-du-bonhomme.aspx",
+      "location": "France",
+      "capacity": 52,
+      "altitude": "2433m"
+    }
+  ],
+  "languages": ["uk", "fr", "it", "de", "es"],
+  "defaultLanguage": "uk"
+}
