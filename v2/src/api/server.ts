@@ -27,6 +27,20 @@ app.get('/health', (c) => {
   });
 });
 
+// Debug endpoint to see Railway's outbound IP
+app.get('/debug/ip', async (c) => {
+  try {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    return c.json({
+      railwayOutboundIP: data.ip,
+      note: 'This is the IP that Railway uses to connect to external services',
+    });
+  } catch (error) {
+    return c.json({ error: 'Could not fetch IP' }, 500);
+  }
+});
+
 // Routes
 app.route('/scrape', scrapingRoutes);
 app.route('/book', bookingRoutes);

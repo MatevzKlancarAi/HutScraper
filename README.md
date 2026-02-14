@@ -1,461 +1,298 @@
-# Mountain Hut Scraper Service 🏔️
+# Mountain Hut Scraper
 
-A production-ready Node.js service that scrapes availability data from mountain huts using the Bentral booking system. Features scheduled operations, database storage, retry logic, and comprehensive monitoring.
+A multi-provider availability scraper and booking automation system for mountain huts across the Alps. Supports 678 huts in 5 countries through the Bentral and hut-reservation.org booking systems.
 
-## Features ✨
+**Coverage:** 12 Slovenian Bentral huts (102 room types) + 666 huts via hut-reservation.org (Austria, Switzerland, Germany, Italy, Slovenia)
 
-- **🕐 Scheduled Operations**: Automatic scraping 2x daily (6 AM & 6 PM)
-- **🏔️ Multi-Hut Support**: Extensible architecture for multiple mountain huts  
-- **📊 Database Integration**: Direct PostgreSQL storage with optimized schema
-- **🔄 Retry Logic**: Exponential backoff and circuit breaker patterns
-- **🏥 Health Monitoring**: Built-in health checks and performance metrics
-- **🚀 Production Ready**: PM2 process management and structured logging
-- **⚡ Zero-Downtime**: Graceful shutdowns and hot reload capabilities
-- **🎯 Accurate Detection**: CSS-based availability detection (not unreliable APIs)
+## Tech Stack
 
-## Quick Start 🚀
+- **Runtime:** Bun.js 1.0+
+- **Language:** TypeScript 5.x
+- **API Framework:** Hono
+- **Browser Automation:** Playwright
+- **Database:** PostgreSQL + Drizzle ORM
+- **Scheduling:** Croner
+- **Logging:** Pino
+
+## Features
+
+- **Multi-provider architecture** - Plugin-based system supporting Bentral and hut-reservation.org
+- **REST API** - Full-featured Hono API for scraping, booking, and querying availability
+- **Automated scheduling** - Built-in Croner scheduler with configurable job management
+- **Booking automation** - Automated booking with CAPTCHA solving for Bentral huts
+- **Concurrent scraping** - Orchestrated batch scraping with retry logic and rate limiting
+- **Docker support** - Production-ready containerization
+
+## Quick Start
 
 ### Prerequisites
 
-- Node.js 16+
+- Bun 1.0+
 - PostgreSQL 12+
-- PM2 (optional, but recommended for production)
+- Chromium (installed via Playwright)
 
-### 1. Setup Environment
+### Installation
 
 ```bash
-# Clone and install dependencies
-git clone <repository-url>
-cd mountain-hut-scraper
-npm install
-
-# Run automated setup
-npm run setup
+cd v2
+bun install
+bunx playwright install chromium
 ```
 
-### 2. Configure Database
+### Environment Setup
 
 ```bash
-# Create PostgreSQL database
-createdb mountain_huts
-
-# Run schema migration
-psql mountain_huts < simplified-availability-schema.sql
-
-# Update .env with your database credentials
 cp .env.example .env
-# Edit .env file with your settings
+# Edit .env with your database credentials
 ```
 
-### 3. Start Service
+### Database Setup
 
 ```bash
-# Development mode (with console logging)
-npm run service:dev
-
-# Production mode with PM2
-npm run pm2:start
-
-# Check service status
-npm run health
+bun run db:migrate
 ```
 
-## 📋 Service Commands
-
-### Multi-Hut Scraper (MAIN FEATURE)
-```bash
-npm run scrape:all         # Scrape all huts (12 months)
-npm run scrape:all:test    # Scrape all huts (September only)
-npm run scrape:list        # List available huts
-```
-
-### Legacy Single-Hut Scraper
-```bash
-npm start                  # Run single hut scraper (Triglavski Dom)
-npm run scrape             # Same as npm start
-npm run scrape:double-room # Scrape specific room type
-```
-
-### Service Operations
-```bash
-npm run service:dev        # Start in development mode
-npm run service:prod       # Start in production mode
-npm run pm2:start          # Start with PM2
-npm run pm2:stop           # Stop PM2 service
-npm run pm2:restart        # Restart PM2 service
-npm run pm2:logs           # View logs
-```
-
-### Health & Monitoring
-```bash
-npm run health             # Check service health
-npm run status             # Detailed service status  
-npm run stats              # Scraping statistics
-npm run manual-scrape      # Trigger manual scraping
-```
-
-## 🏔️ Multi-Hut Scraper
-
-The project now includes a powerful multi-hut scraper that can scrape **10 mountain huts** with **89 room types** across 12 months. This is the main feature for production use.
-
-### Quick Start
+### Run
 
 ```bash
-# Scrape all huts (September only) - RECOMMENDED for testing
-npm run scrape:all:test
+# Development server with hot reload
+bun run dev
 
-# Scrape all huts (12 months) - Full production run
-npm run scrape:all
-
-# List all available huts and room counts
-npm run scrape:list
+# Production server
+bun start
 ```
 
-### Available Mountain Huts
+## API Reference
 
-The scraper supports these 10 Slovenian mountain huts:
+Base URL: `http://localhost:3000`
 
-| Hut Name | Room Types | Capacity Range |
-|----------|------------|----------------|
-| **Triglavski Dom** | 15 types | 1-30 people |
-| **Aljažev dom v Vratih** | 5 types | 2-8 people |
-| **Koča pod Bogatinom** | 9 types | 2-12 people |
-| **Vodnikov dom** | 11 types | 1-8 people |
-| **Planinska koča na Uskovnici** | 10 types | 2-14 people |
-| **Dom Planika pod Triglavom** | 7 types | 2-26 people |
-| **Koča na Doliču** | 8 types | 2-15 people |
-| **Koča na Golici** | 6 types | 2-8 people |
-| **Dom na Komni** | 7 types | 2-24 people |
-| **Koča pri Triglavskih jezerih** | 11 types | 2-16 people |
+### Health
 
-**Total: 89 room types across 10 properties**
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/health` | Service health check with uptime |
 
-### CLI Usage
+### Scraping
 
-```bash
-# Basic usage
-node src/multiHutCli.js [options]
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/scrape` | Start a scraping job |
+| GET | `/scrape/status/:jobId` | Get job status and progress |
+| GET | `/scrape/jobs` | List recent scraping jobs |
 
-# Alternative entry point
-node scrape-all-huts.js [options]
-```
-
-### CLI Options
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--test` | Test mode: scrape September 2025 only | `false` |
-| `--full` | Full mode: scrape 12 months (Sep 2025 - Aug 2026) | `false` |
-| `--huts <names>` | Comma-separated list of specific huts | All huts |
-| `--concurrency <n>` | Max concurrent browsers (1-5 recommended) | `2` |
-| `--delay-huts <ms>` | Delay between huts in milliseconds | `5000` |
-| `--delay-rooms <ms>` | Delay between room types in milliseconds | `2000` |
-| `--list-huts` | List all available huts and exit | `false` |
-| `--help` | Show help message | `false` |
-
-### Usage Examples
-
-```bash
-# Test mode - all huts, September only (RECOMMENDED first run)
-node src/multiHutCli.js --test
-
-# Full production run - all huts, 12 months
-node src/multiHutCli.js --full
-
-# Scrape specific huts
-node src/multiHutCli.js --huts "Triglavski Dom" --test
-node src/multiHutCli.js --huts "Vodnikov dom,Koča na Doliču" --full
-
-# High performance settings
-node src/multiHutCli.js --full --concurrency 3 --delay-huts 2000
-
-# List available huts
-node src/multiHutCli.js --list-huts
-```
-
-### Performance & Reliability
-
-#### **🚀 Optimized for Speed**
-- **Concurrent Processing**: Up to 3 browsers run simultaneously
-- **Smart Delays**: Configurable delays prevent server overload
-- **Batch Database Operations**: Efficient bulk inserts with upserts
-
-#### **🔒 100% Reliable**
-- **Race Condition Handling**: Advanced retry logic with exponential backoff
-- **10 Retry Attempts**: Handles even extreme database contention
-- **Transaction Safety**: Complete rollback on failure
-- **Error Recovery**: Automatic retry with jittered delays (100ms - 1600ms+)
-
-#### **💾 Database Features**
-- **Smart Date Range Deletion**: Only clears dates within scraped range
-- **ON CONFLICT Upserts**: Handles duplicate data gracefully  
-- **Manual ID Generation**: Avoids sequence permission issues
-- **Comprehensive Logging**: Detailed operation tracking
-
-### Typical Performance
-
-| Mode | Duration | Room Types | Available Dates | Concurrency |
-|------|----------|------------|------------------|-------------|
-| **Test Mode** | 2-3 minutes | 89 types | ~1,000 dates | 3 browsers |
-| **Full Mode** | 15-25 minutes | 89 types | ~12,000 dates | 3 browsers |
-
-### Output & Results
-
-The scraper stores results directly in PostgreSQL with this structure:
-
-```sql
--- Properties table
-properties (id, name, slug, location, booking_system, is_active)
-
--- Room types per property  
-room_types (id, property_id, name, capacity, external_id, bed_type, room_category)
-
--- Available dates with check-in/out capabilities
-available_dates (id, property_id, room_type_id, date, can_checkin, can_checkout, scraped_at)
-```
-
-Sample completion summary:
-```
-🎉 Multi-Hut Scraping Complete!
-Duration: 5 minutes
-Huts processed: 10
-Room types scraped: 89  
-Total available dates found: 12,847
-Errors: 0
-```
-
-### Troubleshooting
-
-#### **Common Issues**
-
-1. **Race condition errors**: The retry logic handles these automatically
-2. **Slow performance**: Reduce concurrency (`--concurrency 1`)
-3. **Database connection issues**: Check `.env` configuration
-4. **Missing huts**: Run `--list-huts` to see available options
-
-#### **Optimal Settings**
-
-```bash
-# Balanced performance/reliability (RECOMMENDED)
-node src/multiHutCli.js --full --concurrency 3
-
-# Conservative (slower but minimal server load)  
-node src/multiHutCli.js --full --concurrency 1 --delay-huts 10000
-
-# Aggressive (faster but higher server load)
-node src/multiHutCli.js --full --concurrency 3 --delay-huts 2000 --delay-rooms 1000
-```
-
-#### **Production Deployment**
-
-For scheduled production runs:
-```bash
-# Add to cron for daily runs
-0 6 * * * cd /path/to/scraper && npm run scrape:all >> /var/log/hut-scraper.log 2>&1
-```
-
-## Configuration ⚙️
-
-The scraper is configured via `config/scraper.config.js`:
-
-```javascript
-module.exports = {
-  target: {
-    name: "Triglavski Dom",
-    baseUrl: "https://triglavskidom.si/",
-  },
-
-  bentral: {
-    iframeUrl: "https://www.bentral.com/service/embed/booking.html?...",
-    roomTypes: {
-      "Dvoposteljna soba - zakonska postelja": "5f5441324e446b4d",
-    },
-  },
-
-  scraper: {
-    targetMonths: ["September 2025", "October 2025"],
-    browser: {
-      headless: false, // Set to true for production
-      slowMo: 1000,
-    },
-  },
-};
-```
-
-## How It Works 🔍
-
-### The Problem We Solved
-
-Mountain hut booking systems often show visual availability (colored calendars) that doesn't match their API responses. The API typically returns pricing data even for unavailable dates, leading to incorrect availability reports.
-
-### Our Solution
-
-1. **Direct Calendar Scraping**: We scrape the pre-rendered HTML calendar instead of relying on APIs
-2. **CSS Class Analysis**: We identify availability based on specific CSS classes:
-
-   - `"day"` = Potentially available
-   - `"day unavail"` = Unavailable
-   - `"day disabled"` = Disabled
-   - `title="Zasedeno"` = Occupied
-
-3. **Visual Verification**: Screenshots are taken to verify results match what users see
-
-### Availability Logic
-
-A date is considered **available** if:
-
-- ✅ Has `"day"` CSS class
-- ❌ Does NOT have `"unavail"` class
-- ❌ Does NOT have `"disabled"` class
-- ❌ Does NOT have `"old"` class (past dates)
-- ❌ Does NOT have `"new"` class (next month dates)
-- ❌ Title does NOT contain "Zasedeno" (occupied)
-
-## Project Structure 📁
-
-```
-mountain-hut-scraper/
-├── src/
-│   ├── multiHutCli.js              # 🏔️ Multi-hut scraper (MAIN FEATURE)
-│   ├── multiHutScraper.js          # Multi-hut scraper class
-│   ├── MountainHutScraper.js       # Single hut scraper class  
-│   ├── index.js                    # Legacy CLI entry point
-│   └── services/
-│       └── database.js             # Database operations with retry logic
-├── config/
-│   └── scraper.config.js           # Single hut configuration
-├── scrape-all-huts.js              # Alternative multi-hut entry point
-├── simplified-availability-schema.sql # Database schema
-├── results/                        # JSON output files (legacy)
-├── screenshots/                    # Screenshot verification
-├── package.json
-└── README.md
-```
-
-## Output Format 📊
-
-The scraper generates detailed JSON results:
-
+**POST /scrape body:**
 ```json
 {
-  "scrapingDate": "2025-08-27T14:05:12.351Z",
-  "targetSite": "Triglavski Dom",
-  "roomType": "Dvoposteljna soba - zakonska postelja",
-  "months": {
-    "September 2025": {
-      "totalDays": 30,
-      "availableDays": 0,
-      "availabilityRate": "0.0%",
-      "availableDates": [],
-      "unavailableDates": [1, 2, 3, ...]
-    },
-    "October 2025": {
-      "totalDays": 31,
-      "availableDays": 10,
-      "availabilityRate": "32.3%",
-      "availableDates": [1, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "unavailableDates": [2, 3, 13, 14, ...]
-    }
-  },
-  "summary": {
-    "totalDays": 61,
-    "totalAvailable": 10,
-    "overallAvailabilityRate": "16.4%",
-    "allAvailableDates": ["Oct 1", "Oct 4", "Oct 5", ...]
-  }
+  "provider": "hut-reservation",
+  "hutIds": [123, 456],
+  "startDate": "2025-06-01",
+  "endDate": "2025-09-30",
+  "concurrency": 3
 }
 ```
 
-## Real-World Example 🏔️
+### Booking
 
-When we tested this scraper on Triglavski Dom (a popular Slovenian mountain hut):
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/book` | Start a booking job |
+| GET | `/book/status/:jobId` | Get booking status |
+| GET | `/book/jobs` | List recent booking jobs |
 
-- **September 2025**: 0% availability (completely booked)
-- **October 2025**: 32% availability (10 days available)
-- **Best dates**: Early October (1st, 4th-12th)
-
-This matches exactly what users see in the booking interface!
-
-## API vs Calendar Comparison 🔄
-
-| Method                     | September Availability | October Availability | Accuracy     |
-| -------------------------- | ---------------------- | -------------------- | ------------ |
-| **Direct API Calls**       | 100% (❌ Wrong)        | 100% (❌ Wrong)      | Inaccurate   |
-| **Calendar HTML Scraping** | 0% (✅ Correct)        | 32% (✅ Correct)     | **Accurate** |
-
-## Extending to Other Mountain Huts 🏕️
-
-To scrape other mountain huts using Bentral:
-
-1. Find the Bentral iframe URL on their website
-2. Identify room type IDs (inspect the dropdown)
-3. Update `config/scraper.config.js`
-4. Run the scraper!
-
-Example sites that could work:
-
-- Other Slovenian mountain huts
-- Alpine huts using Bentral system
-- Hotels with similar booking interfaces
-
-## Development 👨‍💻
-
-### For Laravel Integration
-
-The scraping logic can be easily ported to Laravel:
-
-```php
-// Available = has "day" class but NOT "unavail"
-$available = $element->hasClass('day') &&
-             !$element->hasClass('unavail') &&
-             !$element->hasClass('disabled') &&
-             !$element->hasClass('old') &&
-             !$element->hasClass('new') &&
-             !str_contains($element->getAttribute('title'), 'Zasedeno');
+**POST /book body:**
+```json
+{
+  "provider": "bentral",
+  "hutId": "5f4451784d415f4e",
+  "roomTypeId": "5f5441324e446b4d",
+  "checkIn": "2025-07-15",
+  "checkOut": "2025-07-17",
+  "guestInfo": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com",
+    "phone": "+38641123456"
+  },
+  "dryRun": true
+}
 ```
 
-### Adding New Features
+### Properties
 
-- **Multiple Room Types**: Add room IDs to config
-- **Date Ranges**: Modify `targetMonths` in config
-- **Different Huts**: Update iframe URL and selectors
-- **Scheduling**: Add cron job support
-- **Notifications**: Add email/SMS alerts for availability
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/properties` | List all properties (supports `?bookingSystem=bentral`) |
+| GET | `/properties/:id` | Get property details |
+| GET | `/properties/:id/room-types` | Get room types for property |
+| GET | `/properties/:id/availability` | Get availability (requires `startDate` and `endDate`) |
+| GET | `/properties/search/:query` | Search properties by name |
 
-## Troubleshooting 🔧
+### Scheduler
 
-### Common Issues
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/scheduler/status` | Get scheduler and job status |
+| GET | `/scheduler/jobs/:jobName` | Get specific job details |
+| POST | `/scheduler/jobs/:jobName/trigger` | Manually trigger a job |
+| POST | `/scheduler/jobs/:jobName/pause` | Pause a job |
+| POST | `/scheduler/jobs/:jobName/resume` | Resume a job |
 
-1. **Browser doesn't open**: Make sure Playwright browsers are installed
+## Supported Huts
 
-   ```bash
-   npx playwright install chromium
-   ```
+### Bentral (Slovenia) - 12 Huts
 
-2. **Navigation fails**: Check if the target months are too far in the future
+| Hut | Room Types |
+|-----|------------|
+| Triglavski dom na Kredarici | 15 |
+| Koča pri Triglavskih jezerih | 11 |
+| Vodnikov dom | 11 |
+| Planinska koča na Uskovnici | 10 |
+| Koča pod Bogatinom | 9 |
+| Koča na Doliču | 8 |
+| Dom na Komni | 7 |
+| Dom Planika pod Triglavom | 7 |
+| Planinski dom Krnska jezera | 7 |
+| Koča na Golici | 6 |
+| Prešernova koča na Stolu | 6 |
+| Aljažev dom v Vratih | 5 |
 
-3. **No results found**: Verify the iframe URL and room type ID are correct
+**Total: 102 room types**
 
-4. **Screenshots show errors**: Check if the website structure has changed
+### hut-reservation.org - 666 Huts
 
-### Debug Mode
+| Country | Huts |
+|---------|------|
+| Austria | ~400 |
+| Switzerland | ~150 |
+| Germany | ~70 |
+| Italy | ~30 |
+| Slovenia | ~16 |
 
-Set `headless: false` in config to watch the browser in action.
+Huts are automatically discovered via the hut-reservation.org API. Room categories are fetched dynamically during scraping.
 
-## License 📄
+## Commands Reference
 
-MIT License - feel free to use this for your own mountain hut booking needs!
+### Development
 
-## Contributing 🤝
+```bash
+bun run dev          # Start with hot reload
+bun start            # Production server
+bun run typecheck    # TypeScript type checking
+bun run lint         # Lint with Biome
+bun run format       # Format code
+bun run check        # Lint + typecheck
+bun run quality      # Format + check + test
+```
 
-Found a bug or want to add a feature? Pull requests welcome!
+### Database
 
-## Acknowledgments 🙏
+```bash
+bun run db:generate  # Generate Drizzle schema
+bun run db:migrate   # Run migrations
+bun run db:studio    # Open Drizzle Studio GUI
+bun run db:push      # Push schema changes
+```
 
-- Built for the mountain community 🏔️
-- Inspired by the need for accurate booking data
-- Tested on real Slovenian mountain huts
+### Testing
 
----
+```bash
+bun test                     # Run all tests
+bun run test:unit            # Unit tests
+bun run test:integration     # Integration tests
+bun run test:bentral         # Test Bentral provider
+bun run test:hut-reservation # Test hut-reservation provider
+bun run test:orchestrator    # Test orchestrator
+```
 
-**Happy hiking!** 🥾
+### CLI
+
+```bash
+bun run cli:scrape   # Scrape huts
+bun run cli:book     # Book huts
+bun run cli:list     # List available huts
+```
+
+### Docker
+
+```bash
+bun run docker:build # Build Docker image
+bun run docker:up    # Start containers
+bun run docker:down  # Stop containers
+bun run docker:logs  # View logs
+```
+
+## Configuration
+
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `DATABASE_HOST` | PostgreSQL host | `localhost` |
+| `DATABASE_PORT` | PostgreSQL port | `5432` |
+| `DATABASE_NAME` | Database name | `mountain_huts` |
+| `DATABASE_USER` | Database user | `postgres` |
+| `DATABASE_PASSWORD` | Database password | - |
+| `PORT` | API server port | `3000` |
+| `NODE_ENV` | Environment | `development` |
+| `SCHEDULER_ENABLED` | Enable job scheduler | `false` |
+| `LOG_LEVEL` | Logging level | `info` |
+| `HEADLESS` | Run browser headless | `true` |
+
+## Architecture
+
+### Provider Pattern
+
+Each booking system implements the `BaseScraper` or `BaseBooker` abstract class:
+
+```
+v2/src/
+├── core/
+│   ├── providers/          # Provider abstractions
+│   ├── scraper/            # BaseScraper interface
+│   ├── booking/            # BaseBooker interface
+│   └── orchestration/      # Multi-hut batch processing
+├── providers/
+│   ├── bentral/            # Bentral implementation
+│   └── hut-reservation/    # hut-reservation.org implementation
+├── services/
+│   ├── database/           # Drizzle ORM + repositories
+│   ├── scheduler/          # Croner job scheduling
+│   └── captcha/            # CAPTCHA solving
+└── api/
+    ├── server.ts           # Hono server
+    └── routes/             # API endpoints
+```
+
+### Database Schema
+
+```sql
+-- Properties (huts)
+properties (id, name, slug, location, booking_system, external_id, is_active)
+
+-- Room types per property
+room_types (id, property_id, name, capacity, external_id, bed_type, room_category)
+
+-- Available dates
+available_dates (id, property_id, room_type_id, date, can_checkin, can_checkout, scraped_at)
+```
+
+### Availability Detection
+
+Booking APIs often return pricing data for unavailable dates. This scraper solves this by:
+
+1. **Bentral:** Analyzing pre-rendered calendar HTML for CSS classes (`day`, `unavail`, `disabled`)
+2. **hut-reservation.org:** Using authenticated API calls to `/api/availability` with XSRF tokens
+
+## Legacy (v1)
+
+The `src/` directory contains legacy Node.js code for Bentral-only scraping. This is maintained for backwards compatibility but all new development occurs in `v2/`. For legacy usage, see the v1 commands:
+
+```bash
+npm install
+npm run scrape:all     # Scrape all Bentral huts
+npm run scrape:list    # List huts
+```
+
+## License
+
+MIT
